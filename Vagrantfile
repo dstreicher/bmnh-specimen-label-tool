@@ -13,9 +13,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = VM_NAME
   config.vm.network "forwarded_port", guest: 8080, host: APP_PORT
 
-  config.vm.provision :shell, :path => "provision-node.sh"
-  
+  config.vm.provision :shell, :path => "node.provision.sh"
+
   config.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.name = VM_NAME
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
 end

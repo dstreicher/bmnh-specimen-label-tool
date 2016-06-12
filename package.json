@@ -4,6 +4,18 @@
   "description": "web application for generating and updating specimen collection labels",
   "author": "Daniel Streicher",
   "dependencies": {
-    
+    "express": "4.13.4",
+    "mongoose": "4.4.20",
+    "body-parser": "1.15.1"
+  },
+  "devDependencies": {
+    "vue": "1.0.24",
+    "webpack": "1.13.1",
+    "html-webpack-plugin": "2.21.0",
+    "html-webpack-template": "5.0.0"
+  },
+  "scripts": {
+    "prestart": "webpack",
+    "start": "node server.js"
   }
 }
