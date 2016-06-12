@@ -1,0 +1,9 @@
+{
+  "name": "bmnh-specimen-label-tool",
+  "version": "0.0.1",
+  "description": "web application for generating and updating specimen collection labels",
+  "author": "Daniel Streicher",
+  "dependencies": {
+    
+  }
+}
