@@ -1,24 +1,20 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-
 var config = {
   entry: './app/app.js',
   output: {
-    path: __dirname + '/dist',
-    filename: 'bundle.js'
+    path: __dirname + '/dist/',
+    publicPath: 'dist/',
+    filename: 'build.js'
   },
   module: {
     loaders: [
-      { test: /\.css$/, loader: 'style!css' }
+      { test: /\.vue$/, loader: 'vue' },
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      inject: false,
-      template: require('html-webpack-template'),
-      title: 'BMNH Label Tool',
-      mobile: true
-    })
-  ]
+  babel: {
+    presets: ['es2015'],
+    plugins: ['transform-runtime']
+  }
 };
 
 module.exports = config;
