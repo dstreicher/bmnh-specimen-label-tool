@@ -21,7 +21,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   [class*="col-"] {
     padding-top: 1rem;
     padding-bottom: 1rem;

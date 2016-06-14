@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import Home from './pages/Home.vue';
+import NewEntry from './pages/NewEntry.vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 
@@ -12,6 +13,9 @@ export var router = new VueRouter();
 router.map({
   '/home': {
     component: Home
+  },
+  '/new': {
+    component: NewEntry
   }
 });
 
