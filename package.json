@@ -7,7 +7,8 @@
     "express": "4.13.4",
     "mongoose": "4.4.20",
     "body-parser": "1.15.1",
-    "bootstrap": "3.3.6",
+    "bootstrap": "4.0.0-alpha.2",
+    "jquery": "2.2.4",
     "vue-resource": "0.7.4",
     "vue-router": "0.7.13",
     "vue": "1.0.24"

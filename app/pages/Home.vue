@@ -1,12 +1,8 @@
 <template>
-  <div class="col-sm-6 col-sm-offset-3">
-    <h1>Get a Free Chuck Norris Quote!</h1>
-    <button class="btn btn-primary" v-on:click="getQuote()">Get a Quote</button>
-    <div class="quote-area" v-if="quote">
-      <h2>
-        <blockquote>{{ quote }}</blockquote>
-      </h2>
-    </div>
+  <div class="row">
+    <div class="col-xs-4">.col-xs-4</div>
+    <div class="col-xs-4">.col-xs-4</div>
+    <div class="col-xs-4">.col-xs-4</div>
   </div>
 </template>
 
@@ -24,3 +20,12 @@
     }
   }
 </script>
+
+<style>
+  [class*="col-"] {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: rgba(86, 61, 124, .15);
+    border: 1px solid rgba(86, 61, 124, .2);
+  }
+</style>

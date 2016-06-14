@@ -1,5 +1,5 @@
 var config = {
-  entry: './app/app.js',
+  entry: './app/main.js',
   output: {
     path: __dirname + '/dist/',
     publicPath: 'dist/',

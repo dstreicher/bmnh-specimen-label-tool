@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import App from './components/App.vue';
+import App from './App.vue';
 import Home from './pages/Home.vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
