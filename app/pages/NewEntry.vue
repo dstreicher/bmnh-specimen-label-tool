@@ -17,23 +17,51 @@
       </div>
     </fieldset>
 
-    <fieldset class="form-group">
-      <label for="catalogNumber">Catalog Number</label>
-      <input type="text" class="form-control" id="catalogNumber" placeholder="2008.130">
-      <small class="text-muted">BMNH / NHMUK</small>
-    </fieldset>
-    <fieldset class="form-group">
-      <label for="family">Family</label>
-      <input type="text" class="form-control" id="family" placeholder="Brevicepitidae">
-    </fieldset>
-    <fieldset class="form-group">
-      <label for="genus">Family</label>
-      <input type="text" class="form-control" id="genus" placeholder="Callulina">
-    </fieldset>
-    <fieldset class="form-group">
-      <label for="species">Family</label>
-      <input type="text" class="form-control" id="species" placeholder="hanseni">
-    </fieldset>
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <fieldset class="form-group">
+          <label for="catalogNumber">Catalog Number</label>
+          <input type="text" class="form-control" id="catalogNumber" placeholder="2008.130">
+          <small class="text-muted">BMNH / NHMUK</small>
+        </fieldset>
+      </div>
+      <div class="col-xs-12 col-md-12">
+        <fieldset class="form-group">
+          <label for="family">Family</label>
+          <input type="text" class="form-control" id="family" placeholder="Brevicepitidae">
+        </fieldset>
+      </div>
+      <div class="col-xs-12 col-md-12">
+        <fieldset class="form-group">
+          <label for="genus">Genus</label>
+          <input type="text" class="form-control" id="genus" placeholder="Callulina">
+        </fieldset>
+      </div>
+      <div class="col-xs-12 col-md-12">
+        <fieldset class="form-group">
+          <label for="species">Species</label>
+          <input type="text" class="form-control" id="species" placeholder="hanseni">
+        </fieldset>
+      </div>
+      <div class="col-xs-12 col-md-12">
+        <fieldset class="form-group" disabled>
+          <label for="type">Type</label>
+          <input type="text" class="form-control" id="type" placeholder="Holotype">
+        </fieldset>
+      </div>
+      <div class="col-xs-12 col-md-12">
+        <fieldset class="form-group" disabled>
+          <label for="describedBy">Described By</label>
+          <input type="text" class="form-control" id="describedBy" placeholder="Loader, Gower, Hinde, Muller">
+          <small class="text-muted">last name</small>
+        </fieldset>
+      </div>
+    </div>
+
+
+
+
+
 
     <fieldset class="form-group">
       <div class="section-header bg-inverse">
@@ -53,7 +81,7 @@
 
     <fieldset class="form-group">
       <label for="latitude">Latitude</label>
-      <input type="text" class="form-control" id="latitude" placeholder="06 03' 51.1 S" >
+      <input type="text" class="form-control" id="latitude" placeholder="06 03' 51.1 S">
     </fieldset>
 
     <fieldset class="form-group">
