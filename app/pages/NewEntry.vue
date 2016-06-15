@@ -8,7 +8,7 @@
           </div>
           <div class="col-xs-6 col-sm-4 pull-right">
             <label class="c-input c-checkbox">
-              <input type="checkbox">
+              <input id="typeCheckbox" type="checkbox">
               <span class="c-indicator"></span>
               Type Specimen
             </label>
@@ -28,7 +28,9 @@
       <div class="col-xs-12 col-md-12">
         <fieldset class="form-group">
           <label for="family">Family</label>
-          <input type="text" class="form-control" id="family" placeholder="Brevicepitidae">
+          <div class="bloodhound">
+            <input type="text" class="typeahead form-control" id="family" placeholder="Brevicepitidae">
+          </div>
         </fieldset>
       </div>
       <div class="col-xs-12 col-md-12">
@@ -159,6 +161,17 @@
 
 <script>
   export default {
+    created: function () {
+      this.datasets = {};
+      this.datasets.genus = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: '/app/assets/dataset-family.json'
+      });
+    },
+    ready: function () {
+      $('.bloodhound #family').typeahead(null, { name: 'family', source: this.datasets.genus });
+    }
   }
 </script>
 
