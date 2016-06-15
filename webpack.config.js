@@ -8,7 +8,8 @@ var config = {
   module: {
     loaders: [
       { test: /\.vue$/, loader: 'vue' },
-      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ }
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+      { test: /\.(png|jpg|gif)$/, loader: "url", query: { limit: 5000, name: 'assets/img-[hash:6].[ext]' } }
     ]
   },
   babel: {

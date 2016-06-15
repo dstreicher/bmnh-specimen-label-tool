@@ -58,11 +58,6 @@
       </div>
     </div>
 
-
-
-
-
-
     <fieldset class="form-group">
       <div class="section-header bg-inverse">
         <span>Location</span>
@@ -156,8 +151,8 @@
       </select>
     </fieldset>
 
-    <fieldset class="form-group">
-      <button type="submit" class="btn btn-primary">Submit</button>
+    <fieldset class="form-group submit-block">
+      <button type="submit" class="btn btn-success btn-lg btn-block">Add Entry</button>
     </fieldset>
   </form>
 </template>
@@ -171,6 +166,10 @@
   .section-header {
     padding: 1rem;
     border-radius: .25rem;
+  }
+
+  .submit-block {
+    margin-top: 3rem;
   }
 
   .c-input {

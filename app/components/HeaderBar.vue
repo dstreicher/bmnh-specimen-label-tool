@@ -2,8 +2,16 @@
   <div class="pos-f-t">
     <div style="height: 0px;" aria-expanded="false" class="collapse" id="navbar-header">
       <div class="container-fluid bg-inverse p-a-1">
-        <h3>Collapsed content</h3>
-        <p>Toggleable via the navbar brand.</p>
+        <div class="row">
+          <div class="col-xs-12 col-sm-9">
+            <a v-link="'new'" class="btn btn-success-outline" href="#" role="button">New Entry</a>
+            <a v-link="'new'" class="btn btn-success-outline" href="#" role="button">Export Labels</a>
+            <a v-link="'new'" class="btn btn-success-outline" href="#" role="button">Export CSV</a>
+          </div>
+          <div class="col-sm-3">
+            <span>Total Specimens: 10</span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="navbar navbar-light bg-faded navbar-static-top">

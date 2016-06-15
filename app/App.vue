@@ -1,15 +1,18 @@
 <template>
   <header-bar></header-bar>
   <div class="container">
-    <router-view></router-view>
+    <router-view transition="fade"></router-view>
   </div>
+  <footer-bar></footer-bar>
 </template>
 
 <script>
   import HeaderBar from './components/HeaderBar.vue'
+  import FooterBar from './components/FooterBar.vue'
   export default {
     components: {
-      HeaderBar
+      HeaderBar,
+      FooterBar
     },
     methods: {
       logout() {
@@ -21,7 +24,6 @@
 
 <style>
   body {
-    min-height: 75rem;
     padding-top: 6rem;
   }
 </style>

@@ -1,7 +1,7 @@
 {
   "name": "bmnh-specimen-label-tool",
   "version": "0.0.1",
-  "description": "web application for generating and updating specimen collection labels",
+  "description": "A web application for generating and updating specimen collection labels",
   "author": "Daniel Streicher",
   "dependencies": {
     "express": "4.13.4",
@@ -21,10 +21,12 @@
     "babel-preset-stage-2": "6.5.0",
     "babel-runtime": "6.9.2",
     "css-loader": "0.23.1",
-    "vue-style-loader": "1.0.0",
+    "url-loader": "0.5.7",
+    "file-loader": "0.8.5",
     "vue-hot-reload-api": "1.3.2",
     "vue-html-loader": "1.2.2",
     "vue-loader": "8.5.2",
+    "vue-style-loader": "1.0.0",
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1"
   },
