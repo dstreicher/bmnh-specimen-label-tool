@@ -27,3 +27,9 @@
 
   }
 </script>
+
+<style scoped>
+  .navbar {
+    box-shadow: 0px 0px 5px 0px #373a3c;
+  }
+</style>
