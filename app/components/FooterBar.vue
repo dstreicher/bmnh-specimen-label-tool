@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer m-t-2">
+  <footer class="footer m-t-2 bg-inverse">
     <div class="container p-t-2">
       <div class="row">
         <div class="col-xs-12">
@@ -22,7 +22,6 @@
     bottom: 0;
     width: 100%;
     height: 6rem;
-    background-color: #434343;
   }
 
   .image-logo {

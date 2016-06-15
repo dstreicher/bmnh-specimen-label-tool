@@ -4,9 +4,9 @@
       <div class="container-fluid bg-inverse p-a-1">
         <div class="row">
           <div class="col-xs-12 col-sm-9">
-            <a v-link="'new'" class="btn btn-success-outline" href="#" role="button">New Entry</a>
-            <a v-link="'new'" class="btn btn-success-outline" href="#" role="button">Export Labels</a>
-            <a v-link="'new'" class="btn btn-success-outline" href="#" role="button">Export CSV</a>
+            <a v-link="'new-entry'" class="btn btn-success-outline" href="#" data-toggle="collapse" data-target="#navbar-header" role="button">New Entry</a>
+            <a v-link="'export-labels'" class="btn btn-success-outline" href="#" data-toggle="collapse" data-target="#navbar-header" role="button">Export Labels</a>
+            <a v-link="'export-csv'" class="btn btn-success-outline" href="#" data-toggle="collapse" data-target="#navbar-header" role="button">Export CSV</a>
           </div>
           <div class="col-sm-3">
             <span>Total Specimens: 10</span>

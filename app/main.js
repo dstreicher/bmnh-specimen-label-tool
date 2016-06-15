@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
-import Home from './pages/Home.vue';
 import NewEntry from './pages/NewEntry.vue';
+import ExportLabels from './pages/ExportLabels.vue';
+import ExportCSV from './pages/ExportCSV.vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 
@@ -11,16 +12,19 @@ Vue.use(VueRouter);
 export var router = new VueRouter();
 
 router.map({
-  '/home': {
-    component: Home
-  },
-  '/new': {
+  '/new-entry': {
     component: NewEntry
+  },
+  '/export-labels': {
+    component: ExportLabels
+  },
+  '/export-csv': {
+    component: ExportCSV
   }
 });
 
 router.redirect({
-  '*': '/home'
+  '*': '/new-entry'
 });
 
 router.start(App, '#app');

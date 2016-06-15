@@ -26,4 +26,22 @@
   body {
     padding-top: 6rem;
   }
+
+  .fade-transition {
+    transition: all 0.4s ease;
+    overflow: hidden;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .content.fade-transition {
+    /* Delay for showing the content after the loader has been hidden */
+    transition-delay: 0.4s;
+  }
+
+  .fade-enter,
+  .fade-leave {
+    opacity: 0;
+    visibility: hidden;
+  }
 </style>
