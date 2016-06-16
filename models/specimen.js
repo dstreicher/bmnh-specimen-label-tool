@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bwipjs = require('bwip-js');
 
 var schema = new mongoose.Schema({
   catalogNumber: String,
@@ -21,5 +22,16 @@ var schema = new mongoose.Schema({
   additionalInfo: String,
   labelSize: String
 });
+
+schema.methods.toLabel = function (done) {
+  bwipjs.toBuffer({ bcid: 'datamatrix', text: this.catalogNumber }, function (err, png) {
+    if (err) {
+      console.log('error!');
+    }
+    else {
+      done('data:image/png;base64,' + png.toString('base64'));
+    }
+  });
+};
 
 module.exports = mongoose.model('specimen', schema);

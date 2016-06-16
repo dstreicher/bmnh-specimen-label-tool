@@ -23,4 +23,27 @@ router.route('/')
     });
   });
 
+router.route('/:specimen_id')
+  .get(function (req, res, next) {
+    Specimen.findOne({ catalogNumber: req.params.specimen_id }, function (err, specimen) {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).json(specimen);
+    });
+  });
+
+router.route('/:specimen_id/label')
+  .get(function (req, res, next) {
+    Specimen.findOne({ catalogNumber: req.params.specimen_id }, function (err, specimen) {
+      if (err) {
+        return next(err);
+      }
+      specimen.toLabel(function (baseImage) {
+        console.log(baseImage);
+        return res.status(200).send(baseImage);
+      });
+    });
+  });
+
 module.exports = router;
