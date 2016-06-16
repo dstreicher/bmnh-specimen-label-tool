@@ -21,7 +21,7 @@
       <div class="col-xs-12 col-md-12">
         <fieldset class="form-group">
           <label for="catalogNumber">Catalog Number</label>
-          <input type="text" class="form-control" id="catalogNumber" placeholder="2008.130">
+          <input type="text" v-model="catalogNumber" class="form-control" id="catalogNumber" placeholder="2008.130">
           <small class="text-muted">BMNH / NHMUK</small>
         </fieldset>
       </div>
@@ -29,32 +29,32 @@
         <fieldset class="form-group">
           <label for="family">Family</label>
           <div class="bloodhound">
-            <input type="text" class="typeahead form-control" id="family" placeholder="Brevicepitidae">
+            <input type="text" v-model="family" class="typeahead form-control" id="family" placeholder="Brevicepitidae">
           </div>
         </fieldset>
       </div>
       <div class="col-xs-12 col-md-12">
         <fieldset class="form-group">
           <label for="genus">Genus</label>
-          <input type="text" class="form-control" id="genus" placeholder="Callulina">
+          <input type="text" v-model="genus" class="form-control" id="genus" placeholder="Callulina">
         </fieldset>
       </div>
       <div class="col-xs-12 col-md-12">
         <fieldset class="form-group">
           <label for="species">Species</label>
-          <input type="text" class="form-control" id="species" placeholder="hanseni">
+          <input type="text" v-model="species" class="form-control" id="species" placeholder="hanseni">
         </fieldset>
       </div>
       <div class="col-xs-12 col-md-12">
         <fieldset class="form-group" disabled>
           <label for="type">Type</label>
-          <input type="text" class="form-control" id="type" placeholder="Holotype">
+          <input type="text" v-model="type" class="form-control" id="type" placeholder="Holotype">
         </fieldset>
       </div>
       <div class="col-xs-12 col-md-12">
         <fieldset class="form-group" disabled>
           <label for="describedBy">Described By</label>
-          <input type="text" class="form-control" id="describedBy" placeholder="Loader, Gower, Hinde, Muller">
+          <input type="text" v-model="describedBy" class="form-control" id="describedBy" placeholder="Loader, Gower, Hinde, Muller">
           <small class="text-muted">last name</small>
         </fieldset>
       </div>
@@ -68,27 +68,27 @@
 
     <fieldset class="form-group">
       <label for="country">Country</label>
-      <input type="text" class="form-control" id="country" placeholder="Tanzania">
+      <input type="text" v-model="country" class="form-control" id="country" placeholder="Tanzania">
     </fieldset>
 
     <fieldset class="form-group">
       <label for="locality">Locality</label>
-      <input type="text" class="form-control" id="locality" placeholder="Morogoro, Maskati Side of the Nguru">
+      <input type="text" v-model="locality" class="form-control" id="locality" placeholder="Morogoro, Maskati Side of the Nguru">
     </fieldset>
 
     <fieldset class="form-group">
       <label for="latitude">Latitude</label>
-      <input type="text" class="form-control" id="latitude" placeholder="06 03' 51.1 S">
+      <input type="text" v-model="latitude" class="form-control" id="latitude" placeholder="06 03' 51.1 S">
     </fieldset>
 
     <fieldset class="form-group">
       <label for="longitude">Longitude</label>
-      <input type="text" class="form-control" id="longitude" placeholder="37 30' 33.3 E">
+      <input type="text" v-model="longitude" class="form-control" id="longitude" placeholder="37 30' 33.3 E">
     </fieldset>
 
     <fieldset class="form-group">
-      <label for="longitude">Altitude</label>
-      <input type="text" class="form-control" id="longitude" placeholder="1790">
+      <label for="altitude">Altitude</label>
+      <input type="text" v-model="altitude" class="form-control" id="altitude" placeholder="1790">
       <small class="text-muted">measured in meters</small>
     </fieldset>
 
@@ -100,18 +100,18 @@
 
     <fieldset class="form-group">
       <label for="fieldID">Field ID</label>
-      <input type="text" class="form-control" id="fieldID" placeholder="MW 6960">
+      <input type="text" v-model="fieldID" class="form-control" id="fieldID" placeholder="MW 6960">
     </fieldset>
 
     <fieldset class="form-group">
       <label for="collectedBy">Collected By</label>
-      <input type="text" class="form-control" id="collectedBy" placeholder="D. Gower, R. Hinde, S. Loader">
+      <input type="text" v-model="collectedBy" class="form-control" id="collectedBy" placeholder="D. Gower, R. Hinde, S. Loader">
       <small class="text-muted">first initial, last name</small>
     </fieldset>
 
     <fieldset class="form-group">
       <label for="collectionDate">Collection Date</label>
-      <input type="text" class="form-control" id="collectionDate" placeholder="14/06/2003">
+      <input type="text" v-model="collectionDate" class="form-control" id="collectionDate" placeholder="14/06/2003">
       <small class="text-muted">DD/MM/YYYY format</small>
     </fieldset>
 
@@ -123,29 +123,29 @@
 
     <fieldset class="form-group">
       <label for="alcoholConcentration">Alcohol Concentration</label>
-      <input type="text" class="form-control" id="alcoholConcentration" placeholder="68.8">
+      <input type="text" v-model="alcoholConcentration" class="form-control" id="alcoholConcentration" placeholder="68.8">
       <small class="text-muted">in percentage</small>
     </fieldset>
 
     <fieldset class="form-group">
       <label for="alcoholComposition">Alcohol Composition</label>
-      <input type="text" class="form-control" id="alcoholComposition" placeholder="Ethanol">
+      <input type="text" v-model="alcoholComposition" class="form-control" id="alcoholComposition" placeholder="Ethanol">
     </fieldset>
 
     <fieldset class="form-group">
-      <label for="alcoholComposition">Date Measured</label>
-      <input type="text" class="form-control" id="alcoholComposition" placeholder="04/2016">
+      <label for="dateMeasured">Date Measured</label>
+      <input type="text" v-model="dateMeasured" class="form-control" id="dateMeasured" placeholder="04/2016">
       <small class="text-muted">MM/YYYY format</small>
     </fieldset>
 
     <fieldset class="form-group">
       <label for="additionalInfo">Additional Info</label>
-      <textarea class="form-control" id="additionalInfo" rows="3"></textarea>
+      <textarea v-model="additionalInfo" class="form-control" id="additionalInfo" rows="3"></textarea>
     </fieldset>
 
     <fieldset class="form-group">
       <label for="labelSize">Label Size</label>
-      <select class="form-control" id="labelSize">
+      <select v-model="labelSize" class="form-control" id="labelSize">
         <option>Small</option>
         <option>Medium</option>
         <option>Large</option>
@@ -154,13 +154,36 @@
     </fieldset>
 
     <fieldset class="form-group submit-block">
-      <button type="submit" class="btn btn-success btn-lg btn-block">Add Entry</button>
+      <button v-on:click="saveEntry()" type="submit" class="btn btn-success btn-lg btn-block">Add Entry</button>
     </fieldset>
   </form>
 </template>
 
 <script>
   export default {
+    data: function() {
+      return {
+        catalogNumber: '',
+        family: '',
+        genus: '',
+        species: '',
+        type: '',
+        describedBy: '',
+        country: '',
+        locality: '',
+        latitude: '',
+        longitude: '',
+        altitude: '',
+        fieldID: '',
+        collectedBy: '',
+        collectionDate: '',
+        alcoholConcentration: '',
+        alcoholComposition: '',
+        dateMeasured: '',
+        additionalInfo: '',
+        labelSize: 'Small'
+      };
+    },
     created: function () {
       this.datasets = {};
       this.datasets.genus = new Bloodhound({
@@ -171,6 +194,36 @@
     },
     ready: function () {
       $('.bloodhound #family').typeahead(null, { name: 'family', source: this.datasets.genus });
+    },
+    methods: {
+      saveEntry: function () {
+        var specimen = this.$resource('api/specimens{/id}');
+        specimen.save({
+          catalogNumber: this.catalogNumber,
+          family: this.family,
+          genus: this.genus,
+          species: this.species,
+          type: this.type,
+          describedBy: this.describedBy,
+          country: this.country,
+          locality: this.locality,
+          latitude: this.latitude,
+          longitude: this.longitude,
+          altitude: this.altitude,
+          fieldID: this.fieldID,
+          collectedBy: this.collectedBy,
+          collectionDate: this.collectionDate,
+          alcoholConcentration: this.alcoholConcentration,
+          alcoholComposition: this.alcoholComposition,
+          dateMeasured: this.dateMeasured,
+          additionalInfo: this.additionalInfo,
+          labelSize: this.labelSize
+        }).then((response) => {
+          console.log('success!');
+        }, (response) => {
+          console.log('failure!');
+        });
+      }
     }
   }
 </script>

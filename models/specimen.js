@@ -5,7 +5,7 @@ var schema = new mongoose.Schema({
   family: String,
   genus: String,
   species: String,
-  Type: String,
+  type: String,
   describedBy: String,
   country: String,
   locality: String,
@@ -14,10 +14,10 @@ var schema = new mongoose.Schema({
   altitude: String,
   fieldID: String,
   collectedBy: String,
-  collectionDate: Date,
-  alcoholConcentration: Number,
+  collectionDate: String,
+  alcoholConcentration: String,
   alcoholComposition: String,
-  dateMeasured: Date,
+  dateMeasured: String,
   additionalInfo: String,
   labelSize: String
 });

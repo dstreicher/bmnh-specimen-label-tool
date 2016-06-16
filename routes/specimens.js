@@ -1,12 +1,12 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var specimen = require('./../models/specimen');
+var Specimen = require('./../models/specimen');
 var router = express.Router();
 var db = mongoose.connection;
 
 router.route('/')
   .get(function (req, res, next) {
-    specimen.find(function (err, specimens) {
+    Specimen.find(function (err, specimens) {
       if (err) {
         return next(err);
       }
@@ -14,7 +14,13 @@ router.route('/')
     });
   })
   .post(function (req, res, next) {
-
+    var entry = new Specimen(req.body);
+    entry.save(function (err, entry) {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).json(entry);
+    });
   });
 
 module.exports = router;
