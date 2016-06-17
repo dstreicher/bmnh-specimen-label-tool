@@ -158,12 +158,18 @@
         <button v-on:click="saveEntry" type="submit" class="btn btn-success btn-lg btn-block">Add Entry</button>
       </fieldset>
     </form>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
+    <confirm-modal target="bd-example-modal-sm" title-text="Data Import" body-text="This catalog number has specimen data associated with it on the NHM Data Portal. Would you like to import the data?" confirm-text="Import"></confirm-modal>
   </div>
 </template>
 
 <script>
   import DataPortal from '../services/dataportal'
+  import ConfirmModal from '../components/ConfirmModal.vue'
   export default {
+    components: {
+      ConfirmModal
+    },
     data() {
       return {
         form: {
