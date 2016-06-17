@@ -22,7 +22,7 @@
         <div class="col-xs-12 col-md-12">
           <fieldset class="form-group">
             <label for="catalogNumber">Catalog Number</label>
-            <input type="text" v-model="form.catalogNumber" class="form-control" id="catalogNumber" placeholder="2008.130">
+            <input type="text" v-model="form.catalogNumber" v-on:change="checkData" class="form-control" id="catalogNumber" placeholder="2008.130">
             <small class="text-muted">BMNH / NHMUK</small>
           </fieldset>
         </div>
@@ -155,15 +155,16 @@
       </fieldset>
 
       <fieldset class="form-group submit-block">
-        <button v-on:click="saveEntry()" type="submit" class="btn btn-success btn-lg btn-block">Add Entry</button>
+        <button v-on:click="saveEntry" type="submit" class="btn btn-success btn-lg btn-block">Add Entry</button>
       </fieldset>
     </form>
   </div>
 </template>
 
 <script>
+  import DataPortal from '../services/dataportal'
   export default {
-    data: function() {
+    data() {
       return {
         form: {
           catalogNumber: '',
@@ -188,7 +189,7 @@
         }
       };
     },
-    created: function () {
+    created() {
       this.datasets = {};
       this.datasets.genus = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -196,15 +197,24 @@
         prefetch: '/app/assets/dataset-family.json'
       });
     },
-    ready: function () {
+    ready() {
       $('.bloodhound #family').typeahead(null, { name: 'family', source: this.datasets.genus });
     },
     methods: {
-      saveEntry: function () {
+      checkData() {
+        if (this.form.catalogNumber !== '') {
+          DataPortal.search(this, this.form.catalogNumber).then((res) => {
+            console.log(res.data);
+          }, (res) => {
+            console.log('failure!');
+          })
+        }
+      },
+      saveEntry() {
         var specimen = this.$resource('api/specimens{/id}');
-        specimen.save(this.form).then((response) => {
-          console.log('success!');
-        }, (response) => {
+        specimen.save(this.form).then((res) => {
+          console.log(res.data);
+        }, (res) => {
           console.log('failure!');
         });
       }

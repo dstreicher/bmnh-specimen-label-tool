@@ -27,6 +27,7 @@
 <style>
   body {
     padding-top: 6rem;
+    background-color: #f7f7f9;
   }
 
   .fade-transition {
