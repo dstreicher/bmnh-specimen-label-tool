@@ -265,4 +265,8 @@
     color: #fff;
     -moz-user-select: none;
   }
+
+  .c-input>input:checked~.c-indicator {
+    background-color: #5cb85c;
+  }
 </style>
