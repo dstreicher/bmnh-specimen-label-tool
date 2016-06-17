@@ -12,7 +12,7 @@
           <div class="modal-body">{{bodyText}}</div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-success">{{confirmText}}</button>
+            <button type="button" class="btn btn-success" v-on:click="confirm" data-dismiss="modal">{{confirmText}}</button>
           </div>
         </div>
       </div>
@@ -27,7 +27,12 @@
       'titleText',
       'bodyText',
       'confirmText'
-    ]
+    ],
+    methods: {
+      confirm() {
+        this.$dispatch('modal:confirm');
+      }
+    }
   }
 </script>
 

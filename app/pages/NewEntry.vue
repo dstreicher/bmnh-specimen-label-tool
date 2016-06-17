@@ -49,7 +49,7 @@
         <div class="col-xs-12 col-md-12">
           <fieldset class="form-group" disabled>
             <label for="type">Type</label>
-            <input type="text" v-model="form.type" class="form-control" id="type" placeholder="Holotype">
+            <input type="text" v-model="form.type" class="form-control text-uppercase" id="type" placeholder="Holotype">
           </fieldset>
         </div>
         <div class="col-xs-12 col-md-12">
@@ -80,11 +80,13 @@
       <fieldset class="form-group">
         <label for="latitude">Latitude</label>
         <input type="text" v-model="form.latitude" class="form-control" id="latitude" placeholder="06 03' 51.1 S">
+        <small class="text-muted">DD MM SS N/S format</small>
       </fieldset>
 
       <fieldset class="form-group">
         <label for="longitude">Longitude</label>
         <input type="text" v-model="form.longitude" class="form-control" id="longitude" placeholder="37 30' 33.3 E">
+        <small class="text-muted">DD MM SS E/W format</small>
       </fieldset>
 
       <fieldset class="form-group">
@@ -158,8 +160,8 @@
         <button v-on:click="saveEntry" type="submit" class="btn btn-success btn-lg btn-block">Add Entry</button>
       </fieldset>
     </form>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
-    <confirm-modal target="bd-example-modal-sm" title-text="Data Import" body-text="This catalog number has specimen data associated with it on the NHM Data Portal. Would you like to import the data?" confirm-text="Import"></confirm-modal>
+    <confirm-modal target="import-modal" title-text="Data Import" body-text="This catalog number has specimen data associated with it on the NHM Data Portal. Would you like to import the data?"
+      confirm-text="Import"></confirm-modal>
   </div>
 </template>
 
@@ -208,12 +210,24 @@
     },
     methods: {
       checkData() {
-        if (this.form.catalogNumber !== '') {
-          DataPortal.search(this, this.form.catalogNumber).then((res) => {
-            console.log(res.data);
-          }, (res) => {
-            console.log('failure!');
-          })
+        if (this.form.catalogNumber !== '' && DataPortal.store[this.form.catalogNumber] !== null) {
+          if (DataPortal.store[this.form.catalogNumber]) {
+             $('.import-modal').modal('show');
+          }
+          else {
+            DataPortal.search(this, this.form.catalogNumber).then((res) => {
+              if (res.data.result.total === 1) {
+                DataPortal.store[this.form.catalogNumber] = res.data.result.records[0];
+                $('.import-modal').modal('show');
+              }
+              else if (res.data.result.total === 0) {
+                DataPortal.store[this.form.catalogNumber] = null;
+              }
+              console.log(res.data);
+            }, (res) => {
+              console.log('failure!');
+            });
+          }
         }
       },
       saveEntry() {
@@ -223,6 +237,24 @@
         }, (res) => {
           console.log('failure!');
         });
+      }
+    },
+    events: {
+      'modal:confirm': function () {
+        var record = DataPortal.store[this.form.catalogNumber];
+        this.form.family = record.family;
+        this.form.genus = record.genus;
+        this.form.species = record.specificEpithet;
+        this.form.type = record.typeStatus;
+        this.form.describedBy = record.scientificNameAuthorship;
+        this.form.country = record.country;
+        this.form.locality = record.locality;
+        this.form.latitude = record.verbatimLatitude;
+        this.form.longitude = record.verbatimLongitude;
+        // this.form.altitude = record.;
+        // this.form.fieldID = record.;
+        this.form.collectedBy = record.recordedBy;
+        //this.form.collectionDate = record.;
       }
     }
   }

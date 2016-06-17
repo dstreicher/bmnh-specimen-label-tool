@@ -1,41 +1,72 @@
 <template>
   <div class="pos-f-t">
-    <!--<div style="height: 0px;" aria-expanded="false" class="collapse" id="navbar-header">
-      <div class="container-fluid bg-inverse p-a-1">
-        <div class="row">
-          <div class="col-xs-12 col-sm-9">
-            <a v-link="'new-entry'" class="btn btn-success-outline" href="#" data-toggle="collapse" data-target="#navbar-header" role="button">New Entry</a>
-            <a v-link="'export-labels'" class="btn btn-success-outline" href="#" data-toggle="collapse" data-target="#navbar-header"
-              role="button">Export Labels</a>
-            <a v-link="'export-csv'" class="btn btn-success-outline" href="#" data-toggle="collapse" data-target="#navbar-header" role="button">Export CSV</a>
-          </div>
-          <div class="col-sm-3">
-            <span>Total Specimens: 10</span>
-          </div>
-        </div>
-      </div>
-    </div>-->
     <nav class="navbar navbar-full navbar-dark bg-inverse">
       <div class="container">
-        <a class="navbar-brand">BMNH Labels</a>
-        <div class="nav navbar-nav">
-          <a v-link="{ path: '/new-entry', activeClass: 'active' }" class="nav-item nav-link">New Entry</a>
-          <a v-link="{ path: '/export-labels', activeClass: 'active' }" class="nav-item nav-link">Export Labels</a>
-          <a v-link="{ path: '/export-csv', activeClass: 'active' }" " class="nav-item nav-link ">Export CSV</a>
+        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapsing-navbar">&#9776;</button>
+        <div class="collapse navbar-toggleable-xs" id="collapsing-navbar">
+          <a class="navbar-brand">BMNH Labels</a>
+          <div class="nav navbar-nav">
+            <a v-link="{ path: '/new-entry', activeClass: 'active' }" class="nav-item nav-link">New Entry</a>
+            <a v-link="{ path: '/export-labels', activeClass: 'active' }" class="nav-item nav-link">Export Labels</a>
+            <a v-link="{ path: '/export-csv', activeClass: 'active' }" class="nav-item nav-link ">Export CSV</a>
+          </div>
         </div>
       </div>
+
+
+
+      <!--<div class="container ">
+        <a class="navbar-brand ">BMNH Labels</a>
+        <div class="nav navbar-nav ">
+        <a v-link="{ path: '/new-entry', activeClass: 'active' } " class="nav-item nav-link ">New Entry</a>
+        <a v-link="{ path: '/export-labels', activeClass: 'active' } " class="nav-item nav-link ">Export Labels</a>
+        <a v-link="{ path: '/export-csv', activeClass: 'active' } " " class="nav-item nav-link ">Export CSV</a>
+        </div>
+      </div>-->
     </nav>
   </div>
 </template>
 
 <script>
   export default {
-
+    ready() {
+      $(".navbar-nav .nav-link").click(function (event) {
+        console.log('clicked!');
+        var toggle = $(".navbar-toggler").is(":visible");
+        if (toggle) {
+          $("#collapsing-navbar").collapse('hide');
+        }
+      });
+    }
   }
 </script>
 
 <style scoped>
-  .navbar {
-    /*box-shadow: 0px 0px 5px 0px #373a3c;*/
+  .navbar-brand {
+    float: none;
+  }
+
+  .navbar-nav .nav-item {
+    float: none;
+  }
+
+  .navbar-divider,
+  .navbar-nav .nav-item+.nav-item,
+  .navbar-nav .nav-link + .nav-link {
+    margin-left: 0;
+  }
+
+  @media (min-width: 34em) {
+    .navbar-brand {
+      float: left;
+    }
+    .navbar-nav .nav-item {
+      float: left;
+    }
+    .navbar-divider,
+    .navbar-nav .nav-item+.nav-item,
+    .navbar-nav .nav-link + .nav-link {
+      margin-left: 1rem;
+    }
   }
 </style>
