@@ -1,9 +1,11 @@
 <template>
-  <header-bar></header-bar>
-  <div class="container">
-    <router-view transition="fade"></router-view>
+  <div>
+    <header-bar></header-bar>
+    <div class="container">
+      <router-view transition="fade"></router-view>
+    </div>
+    <footer-bar></footer-bar>
   </div>
-  <footer-bar></footer-bar>
 </template>
 
 <script>
@@ -38,8 +40,8 @@
     /* Delay for showing the content after the loader has been hidden */
     transition-delay: 0.4s;
   }
-
   /*.fade-enter,*/
+
   .fade-leave {
     opacity: 0;
     visibility: hidden;
