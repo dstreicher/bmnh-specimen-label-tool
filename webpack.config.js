@@ -11,6 +11,7 @@ var config = {
     loaders: [
       { test: /\.vue$/, loader: 'vue' },
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+      { test: /\.json$/, loader: 'json' },
       { test: /\.(png|jpg|gif)$/, loader: "url", query: { limit: 5000, name: 'assets/img-[hash:6].[ext]' } },
       { test: /\.(html)$/, loader: 'file-loader?name=[name].[ext]' }
     ]

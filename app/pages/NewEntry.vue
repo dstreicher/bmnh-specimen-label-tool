@@ -29,9 +29,7 @@
         <div class="col-xs-12 col-md-12">
           <fieldset class="form-group">
             <label for="family">Family</label>
-            <div class="bloodhound">
               <input type="text" v-model="form.family" class="typeahead form-control" id="family" placeholder="Brevicepitidae">
-            </div>
           </fieldset>
         </div>
         <div class="col-xs-12 col-md-12">
@@ -47,7 +45,7 @@
           </fieldset>
         </div>
         <div class="col-xs-12 col-md-12">
-          <fieldset class="form-group" disabled>
+          <fieldset class="form-group">
             <label for="type">Type</label>
             <input type="text" v-model="form.type" class="form-control text-uppercase" id="type" placeholder="Holotype">
           </fieldset>
@@ -166,6 +164,7 @@
 </template>
 
 <script>
+  import Bloodhound from '../services/bloodhound'
   import DataPortal from '../services/dataportal'
   import ConfirmModal from '../components/ConfirmModal.vue'
   export default {
@@ -197,16 +196,8 @@
         }
       };
     },
-    created() {
-      this.datasets = {};
-      this.datasets.genus = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: '/app/assets/dataset-family.json'
-      });
-    },
     ready() {
-      $('.bloodhound #family').typeahead(null, { name: 'family', source: this.datasets.genus });
+      Bloodhound.initialize();
     },
     methods: {
       checkData() {
