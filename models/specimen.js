@@ -20,18 +20,21 @@ var schema = new mongoose.Schema({
   alcoholComposition: String,
   dateMeasured: String,
   additionalInfo: String,
-  labelSize: String
+  labelSize: String,
+  dataMatrixImage: String
 });
 
-schema.methods.toLabel = function (done) {
+schema.pre('save', function (next) {
+  var specimen = this;
   bwipjs.toBuffer({ bcid: 'datamatrix', text: this.catalogNumber }, function (err, png) {
     if (err) {
       console.log('error!');
     }
     else {
-      done('data:image/png;base64,' + png.toString('base64'));
+      specimen.dataMatrixImage = 'data:image/png;base64,' + png.toString('base64');
+      next();
     }
   });
-};
+});
 
 module.exports = mongoose.model('specimen', schema);

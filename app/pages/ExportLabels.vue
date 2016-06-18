@@ -18,7 +18,6 @@
       }
     },
     created() {
-      var view = this;
       var specimen = this.$resource('api/specimens{/id}');
       specimen.query().then((res) => {
         this.specimens = res.data;

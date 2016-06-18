@@ -15,8 +15,9 @@ export default {
     })
   },
   initialize() {
-    console.log('init!');
-    $('#family').typeahead(null, { name: 'family', source: this.datasets.family });
+    var $family = $('#family');
+    $family.typeahead(null, { name: 'family', source: this.datasets.family });
+    // $family.typeahead('val', $family.val());
     $('#type').typeahead(null, { name: 'type', source: this.datasets.type });
   }
 }

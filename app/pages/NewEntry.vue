@@ -29,7 +29,7 @@
         <div class="col-xs-12 col-md-12">
           <fieldset class="form-group">
             <label for="family">Family</label>
-              <input type="text" v-model="form.family" class="typeahead form-control" id="family" placeholder="Brevicepitidae">
+            <input type="text" v-model="form.family" class="typeahead form-control" id="family" placeholder="Brevicepitidae">
           </fieldset>
         </div>
         <div class="col-xs-12 col-md-12">
@@ -155,21 +155,22 @@
       </fieldset>
 
       <fieldset class="form-group submit-block">
-        <button v-on:click="saveEntry" type="submit" class="btn btn-success btn-lg btn-block">Add Entry</button>
+        <button v-on:click="saveEntry" type="button" class="btn btn-success btn-lg btn-block">Add Entry</button>
       </fieldset>
     </form>
-    <confirm-modal target="import-modal" title-text="Data Import" body-text="This catalog number has specimen data associated with it on the NHM Data Portal. Would you like to import the data?"
-      confirm-text="Import"></confirm-modal>
+    <prompt-modal target="import-modal" title-text="Data Import" body-text="This catalog number has specimen data associated with it on the NHM Data Portal. Would you like to import the data?"
+      confirm-text="Import"></prompt-modal>
+    <prompt-modal target="saved-modal" title-text="Entry Saved" body-text="Specimen entry saved to database."></prompt-modal>
   </div>
 </template>
 
 <script>
   import Bloodhound from '../services/bloodhound'
   import DataPortal from '../services/dataportal'
-  import ConfirmModal from '../components/ConfirmModal.vue'
+  import PromptModal from '../components/PromptModal.vue'
   export default {
     components: {
-      ConfirmModal
+      PromptModal
     },
     data() {
       return {
@@ -207,7 +208,7 @@
           }
           else {
             DataPortal.search(this, this.form.catalogNumber).then((res) => {
-              if (res.data.result.total === 1) {
+              if (res.data.result.total >= 1) {
                 DataPortal.store[this.form.catalogNumber] = res.data.result.records[0];
                 $('.import-modal').modal('show');
               }
@@ -224,14 +225,33 @@
       saveEntry() {
         var specimen = this.$resource('api/specimens{/id}');
         specimen.save(this.form).then((res) => {
-          console.log(res.data);
+          this.form.catalogNumber = '';
+          this.form.family = '';
+          this.form.genus = '';
+          this.form.species = '';
+          this.form.type = '';
+          this.form.describedBy = '';
+          this.form.country = '';
+          this.form.locality = '';
+          this.form.latitude = '';
+          this.form.longitude = '';
+          this.form.altitude = '';
+          this.form.fieldID = '';
+          this.form.collectedBy = '';
+          this.form.collectionDate = '';
+          this.form.alcoholConcentration = '';
+          this.form.alcoholComposition = '';
+          this.form.dateMeasured = '';
+          this.form.additionalInfo = '';
+          this.form.labelSize = 'Small';
+          $('.saved-modal').modal('show');
         }, (res) => {
           console.log('failure!');
         });
       }
     },
     events: {
-      'modal:confirm': function () {
+      'import-modal:confirm': function (target) {
         var record = DataPortal.store[this.form.catalogNumber];
         this.form.family = record.family;
         this.form.genus = record.genus;

@@ -6,6 +6,7 @@
   "dependencies": {
     "express": "4.13.4",
     "mongoose": "4.4.20",
+    "phantom": "2.1.5",
     "body-parser": "1.15.1",
     "bwip-js": "0.16.0",
     "bootstrap": "4.0.0-alpha.2",
