@@ -33,17 +33,4 @@ router.route('/:specimen_id')
     });
   });
 
-// router.route('/:specimen_id/label')
-//   .get(function (req, res, next) {
-//     Specimen.findOne({ catalogNumber: req.params.specimen_id }, function (err, specimen) {
-//       if (err) {
-//         return next(err);
-//       }
-//       specimen.toLabel(function (baseImage) {
-//         console.log(baseImage);
-//         return res.status(200).send(baseImage);
-//       });
-//     });
-//   });
-
 module.exports = router;
