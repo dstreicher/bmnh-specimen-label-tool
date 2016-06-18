@@ -15,11 +15,10 @@
       <div class="col-xs-12 col-md-6">
         <button v-on:click="downloadPDF" type="button" class="btn btn-success">Download</button>
         <button onclick='window.open("dist/pdf/specimen_labels.pdf", "_blank");' type="button" class="btn btn-success">Open PDF</button>
-
       </div>
     </div>
 
-
+    <label-preview></label-preview>
 
     <div class="card" v-for="specimen in specimens">
       <h3 class="card-header">{{specimen.catalogNumber}}</h3>
@@ -32,7 +31,11 @@
 </template>
 
 <script>
+  import LabelPreview from '../components/LabelPreview.vue'
   export default {
+    components: {
+      LabelPreview
+    },
     data() {
       return {
         specimens: {}
