@@ -18,7 +18,17 @@
       </div>
     </div>
 
-    <label-preview></label-preview>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-success active">
+        <input type="radio" class="bg-success" name="options" id="option1" autocomplete="off" checked> Printed
+      </label>
+      <label class="btn btn-warning">
+        <input type="radio" name="options" id="option2" autocomplete="off"> To Do
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="options" id="option3" autocomplete="off"> All
+      </label>
+    </div>
 
     <div class="card" v-for="specimen in specimens">
       <h3 class="card-header">{{specimen.catalogNumber}}</h3>
