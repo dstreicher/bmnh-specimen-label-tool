@@ -4,7 +4,7 @@
       <div class="col-xs-12 col-md-6">
         <div class="form-group">
           <label for="paperSize">Paper Format</label>
-          <select class="form-control" id="paperSize">
+          <select v-model="paperSize" class="form-control" id="paperSize">
             <option>A3</option>
             <option>A4</option>
             <option>A5</option>
@@ -38,6 +38,7 @@
     },
     data() {
       return {
+        paperSize: 'A4', 
         specimens: {}
       }
     },
@@ -51,7 +52,7 @@
     },
     methods: {
       downloadPDF() {
-        this.$http.post('/api/pdf', { specimens: this.specimens }).then((res) => {
+        this.$http.post('/api/pdf', { paperSize: this.paperSize, specimens: this.specimens }).then((res) => {
           window.open('/dist/pdf/specimen_labels.pdf');
         }, (res) => {
           console.log(res);

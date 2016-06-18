@@ -296,6 +296,10 @@
     -moz-user-select: none;
   }
 
+  #genus, #species {
+    font-style: italic;
+  }
+
   .c-input>input:checked~.c-indicator {
     background-color: #5cb85c;
   }

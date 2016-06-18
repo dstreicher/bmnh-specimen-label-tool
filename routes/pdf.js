@@ -14,7 +14,7 @@ router.route('/')
       }
       var template = Handlebars.compile(file);
       var content = template(req.body);
-      pdf.create(content, { format: 'A4' }).toFile('./dist/pdf/specimen_labels.pdf', function (err) {
+      pdf.create(content, { format: req.body.paperSize }).toFile('./dist/pdf/specimen_labels.pdf', function (err) {
         if (err) {
           return console.log(err);
         }
