@@ -122,9 +122,9 @@
         </div>
       </fieldset>
 
-      <fieldset class="form-group">
+      <fieldset class="form-group has-danger">
         <label for="alcoholConcentration">Alcohol Concentration</label>
-        <input type="text" v-model="form.alcoholConcentration" class="form-control" id="alcoholConcentration" placeholder="68.8">
+        <input type="text" v-model="form.alcoholConcentration" class="form-control form-control-danger" id="alcoholConcentration" placeholder="68.8">
         <small class="text-muted">in percentage</small>
       </fieldset>
 

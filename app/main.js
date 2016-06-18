@@ -5,9 +5,11 @@ import ExportLabels from './pages/ExportLabels.vue';
 import ExportCSV from './pages/ExportCSV.vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+import VueValidator from 'vue-validator';
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
+Vue.use(VueValidator);
 
 export var router = new VueRouter();
 
