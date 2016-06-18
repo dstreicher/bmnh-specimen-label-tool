@@ -48,6 +48,14 @@
     visibility: hidden;
   }
 
+  .form-control {
+    background-color: #fff !important;
+  }
+
+  .form-control:disabled {
+    background-color: #eeeeef !important;
+  }
+
   .twitter-typeahead {
     width: 100%;
   }

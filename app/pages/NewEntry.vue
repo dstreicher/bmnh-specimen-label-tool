@@ -4,12 +4,12 @@
       <fieldset class="form-group">
         <div class="section-header bg-inverse">
           <div class="row">
-            <div class="col-xs-6 col-sm-8">
+            <div class="col-xs-5 col-sm-8">
               <span>Classification</span>
             </div>
-            <div class="col-xs-6 col-sm-4 pull-right">
+            <div class="col-xs-7 col-sm-4 pull-right">
               <label class="c-input c-checkbox">
-              <input id="typeCheckbox" type="checkbox">
+              <input v-model="isTypeSpecimen" v-on:change="clearTypeFields" id="typeCheckbox" type="checkbox">
               <span class="c-indicator"></span>
               Type Specimen
             </label>
@@ -45,13 +45,13 @@
           </fieldset>
         </div>
         <div class="col-xs-12 col-md-12">
-          <fieldset class="form-group">
+          <fieldset class="form-group" :disabled="!isTypeSpecimen">
             <label for="type">Type</label>
             <input type="text" v-model="form.type" class="form-control text-uppercase" id="type" placeholder="Holotype">
           </fieldset>
         </div>
         <div class="col-xs-12 col-md-12">
-          <fieldset class="form-group" disabled>
+          <fieldset class="form-group" :disabled="!isTypeSpecimen">
             <label for="describedBy">Described By</label>
             <input type="text" v-model="form.describedBy" class="form-control" id="describedBy" placeholder="Loader, Gower, Hinde, Muller">
             <small class="text-muted">last name</small>
@@ -194,13 +194,20 @@
           dateMeasured: '',
           additionalInfo: '',
           labelSize: 'Small'
-        }
+        },
+        isTypeSpecimen: false
       };
     },
     ready() {
       Bloodhound.initialize();
     },
     methods: {
+      clearTypeFields() {
+        if (!this.isTypeSpecimen) {
+          this.form.type = '';
+          this.form.describedBy = '';
+        }
+      },
       checkData() {
         if (this.form.catalogNumber !== '' && DataPortal.store[this.form.catalogNumber] !== null) {
           if (DataPortal.store[this.form.catalogNumber]) {
@@ -256,8 +263,11 @@
         this.form.family = record.family;
         this.form.genus = record.genus;
         this.form.species = record.specificEpithet;
-        this.form.type = record.typeStatus;
-        this.form.describedBy = record.scientificNameAuthorship;
+        if (record.typeStatus) {
+          this.isTypeSpecimen = true;
+          this.form.type = record.typeStatus;
+          this.form.describedBy = record.scientificNameAuthorship;
+        }
         this.form.country = record.country;
         this.form.locality = record.locality;
         this.form.latitude = record.verbatimLatitude;
