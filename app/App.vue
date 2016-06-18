@@ -41,8 +41,8 @@
     /* Delay for showing the content after the loader has been hidden */
     transition-delay: 0.4s;
   }
-  /*.fade-enter,*/
 
+  .fade-enter,
   .fade-leave {
     opacity: 0;
     visibility: hidden;

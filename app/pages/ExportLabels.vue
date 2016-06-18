@@ -14,6 +14,8 @@
       </div>
       <div class="col-xs-12 col-md-6">
         <button v-on:click="downloadPDF" type="button" class="btn btn-success">Download</button>
+        <button onclick='window.open("dist/pdf/specimen_labels.pdf", "_blank");' type="button" class="btn btn-success">Open PDF</button>
+
       </div>
     </div>
 
@@ -47,7 +49,7 @@
     methods: {
       downloadPDF() {
         this.$http.post('/api/pdf', { specimens: this.specimens }).then((res) => {
-          window.open(document.location.origin + '/api/pdf/download');
+          window.open('/dist/pdf/specimen_labels.pdf');
         }, (res) => {
           console.log(res);
         });
