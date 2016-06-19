@@ -1,20 +1,20 @@
 <template>
   <div>
-    <div class="row">
+    <!--<div class="row">
       <div class="col-xs-12 col-md-6">
         <button v-on:click="downloadPDF" type="button" class="btn btn-success">Download</button>
         <button onclick='window.open("dist/pdf/specimen_labels.pdf");' type="button" class="btn btn-success">Open PDF</button>
       </div>
-    </div>
+    </div>-->
 
     <div class="row">
       <div class="col-xs-12 text-xs-center text-md-right">
         <div class="btn-group" data-toggle="buttons">
           <label class="btn btn-success active">
-            <input type="radio" class="bg-success" name="options" id="option1" autocomplete="off" checked> Printed <span class="label label-pill label-success">34</span>
+            <input type="radio" class="bg-success" name="options" id="option1" autocomplete="off" checked> Printed <span class="label label-pill label-success">0</span>
           </label>
           <label class="btn btn-warning">
-            <input type="radio" name="options" id="option2" autocomplete="off"> To Do <span class="label label-pill label-warning">147</span>
+            <input type="radio" name="options" id="option2" autocomplete="off"> To Do <span class="label label-pill label-warning">0</span>
           </label>
           <label class="btn btn-secondary">
             <input type="radio" name="options" id="option3" autocomplete="off"> All
@@ -26,15 +26,28 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="list-group">
-          <a class="list-group-item" v-on:click="togglePrintOption(1)">
-            <label class="c-input c-checkbox">
-              <input v-model="shouldPrint" type="checkbox">
-              <span class="c-indicator"></span>
-            </label>
+          <a class="list-group-item" v-for="specimen in specimens" v-on:click="togglePrintOption($index)">
+            <div class="row">
+              <div class="col-xs-8">
+                <label class="c-input c-checkbox">
+                  <input v-model="specimen.shouldPrint" type="checkbox">
+                  <span class="c-indicator"></span>
+                </label>
+                <span class="title">{{specimen.catalogNumber}}</span>
+                <span class="subtitle">{{specimen.genus + ' ' + specimen.species}}</span>
+              </div>
+              <div class="col-xs-4 text-xs-right">
+                <button class="btn btn-warning btn-sm" v-on:click.stop="editEntry(1)">Edit</button>
+                <button class="btn btn-success btn-sm" type="button" data-toggle="collapse" data-target="#{{specimen._id}}-collapse"
+                  aria-expanded="false" aria-controls="collapseExample">
+                  Preview
+                </button>
+              </div>
+            </div>
+            <div class="collapse p-t-1" id="{{specimen._id}}-collapse">
+              <label-preview :specimen="specimen"></label-preview>
+            </div>
           </a>
-          <a class="list-group-item">Morbi leo risus</a>
-          <a class="list-group-item">Porta ac consectetur ac</a>
-          <a class="list-group-item">Vestibulum at eros</a>
         </div>
       </div>
     </div>
@@ -52,15 +65,7 @@
         </div>
       </div>
       <div class="col-xs-12">
-        <button type="button" class="btn btn-success btn-lg btn-block">Export</button>
-      </div>
-    </div>
-
-    <div class="card" v-for="specimen in specimens">
-      <h3 class="card-header">{{specimen.catalogNumber}}</h3>
-      <div class="card-block">
-        <h4 class="card-title">{{specimen.genus + ' ' + specimen.species}}</h4>
-        <!--<p class="card-text">{{specimen.}}</p>-->
+        <button type="button" v-on:click="exportPDF" class="btn btn-success btn-lg btn-block">Export</button>
       </div>
     </div>
   </div>
@@ -75,24 +80,35 @@
     data() {
       return {
         paperSize: 'A4',
-        shouldPrint: false,
         specimens: {}
       }
     },
     created() {
       var specimen = this.$resource('api/specimens{/id}');
       specimen.query().then((res) => {
+        for (var i = 0; i < res.data.length; i++) {
+          res.data[i].shouldPrint = false;
+        }
         this.specimens = res.data;
       }, (res) => {
         console.log('failure!');
       });
     },
     methods: {
-      togglePrintOption(id) {
-        this.shouldPrint = !this.shouldPrint;
+      togglePrintOption(index) {
+        this.specimens[index].shouldPrint = !this.specimens[index].shouldPrint;
       },
-      downloadPDF() {
-        this.$http.post('/api/pdf', { paperSize: this.paperSize, specimens: this.specimens }).then((res) => {
+      editEntry(id) {
+        console.log('edit entry ' + id);
+      },
+      exportPDF() {
+        var specimensToPrint = [];
+        for (var i = 0; i < this.specimens.length; i++) {
+          if (this.specimens[i].shouldPrint) {
+            specimensToPrint.push(this.specimens[i]);
+          }
+        }
+        this.$http.post('/api/pdf', { paperSize: this.paperSize, specimens: specimensToPrint }).then((res) => {
           window.open('/dist/pdf/specimen_labels.pdf');
         }, (res) => {
           console.log(res);
@@ -117,8 +133,22 @@
     cursor: pointer;
   }
 
+  .list-group-item {
+    -moz-user-select: none;
+    user-select: none;
+  }
+
   .list-group-item.active {
     background-color: #5cb85c;
     border-color: #5cb85c;
+  }
+
+  .list-group-item .title {
+    font-weight: 600;
+  }
+
+  .list-group-item .subtitle {
+    font-weight: 500;
+    font-style: italic;
   }
 </style>
