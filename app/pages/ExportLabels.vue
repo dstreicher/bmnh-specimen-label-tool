@@ -2,6 +2,45 @@
   <div>
     <div class="row">
       <div class="col-xs-12 col-md-6">
+        <button v-on:click="downloadPDF" type="button" class="btn btn-success">Download</button>
+        <button onclick='window.open("dist/pdf/specimen_labels.pdf");' type="button" class="btn btn-success">Open PDF</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 text-xs-center text-md-right">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-success active">
+            <input type="radio" class="bg-success" name="options" id="option1" autocomplete="off" checked> Printed <span class="label label-pill label-success">34</span>
+          </label>
+          <label class="btn btn-warning">
+            <input type="radio" name="options" id="option2" autocomplete="off"> To Do <span class="label label-pill label-warning">147</span>
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> All
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="list-group">
+          <a class="list-group-item" v-on:click="togglePrintOption(1)">
+            <label class="c-input c-checkbox">
+              <input v-model="shouldPrint" type="checkbox">
+              <span class="c-indicator"></span>
+            </label>
+          </a>
+          <a class="list-group-item">Morbi leo risus</a>
+          <a class="list-group-item">Porta ac consectetur ac</a>
+          <a class="list-group-item">Vestibulum at eros</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
         <div class="form-group">
           <label for="paperSize">Paper Format</label>
           <select v-model="paperSize" class="form-control" id="paperSize">
@@ -12,22 +51,9 @@
           </select>
         </div>
       </div>
-      <div class="col-xs-12 col-md-6">
-        <button v-on:click="downloadPDF" type="button" class="btn btn-success">Download</button>
-        <button onclick='window.open("dist/pdf/specimen_labels.pdf", "_blank");' type="button" class="btn btn-success">Open PDF</button>
+      <div class="col-xs-12">
+        <button type="button" class="btn btn-success btn-lg btn-block">Export</button>
       </div>
-    </div>
-
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-success active">
-        <input type="radio" class="bg-success" name="options" id="option1" autocomplete="off" checked> Printed
-      </label>
-      <label class="btn btn-warning">
-        <input type="radio" name="options" id="option2" autocomplete="off"> To Do
-      </label>
-      <label class="btn btn-secondary">
-        <input type="radio" name="options" id="option3" autocomplete="off"> All
-      </label>
     </div>
 
     <div class="card" v-for="specimen in specimens">
@@ -48,7 +74,8 @@
     },
     data() {
       return {
-        paperSize: 'A4', 
+        paperSize: 'A4',
+        shouldPrint: false,
         specimens: {}
       }
     },
@@ -61,6 +88,9 @@
       });
     },
     methods: {
+      togglePrintOption(id) {
+        this.shouldPrint = !this.shouldPrint;
+      },
       downloadPDF() {
         this.$http.post('/api/pdf', { paperSize: this.paperSize, specimens: this.specimens }).then((res) => {
           window.open('/dist/pdf/specimen_labels.pdf');
@@ -73,5 +103,22 @@
 </script>
 
 <style scoped>
+  .active .label-printed {
+    border-color: #5cb85c;
+    background-color: #5cb85c;
+  }
 
+  .label-printed,
+  .label-todo {
+    border: 1px solid #fff;
+  }
+
+  .list-group {
+    cursor: pointer;
+  }
+
+  .list-group-item.active {
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+  }
 </style>

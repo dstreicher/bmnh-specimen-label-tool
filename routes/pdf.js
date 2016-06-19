@@ -25,7 +25,7 @@ router.route('/')
 
 router.route('/download')
   .get(function (req, res, next) {
-    res.status(200).download('./dist/pdf/specimen_labels.pdf', 'labels.pdf');
+    res.status(200).download('./dist/pdf/specimen_labels.pdf', 'specimen_labels.pdf');
   });
 
 module.exports = router;
