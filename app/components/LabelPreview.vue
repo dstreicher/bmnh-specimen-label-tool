@@ -6,7 +6,7 @@
         <span class="family">{{specimen.family}}</span>
       </div>
       <div class="name-row">
-        <span class="scientific-name">{{this.genus}} {{this.species}} <span class="described-by">{{specimen.describedBy}}</span></span>
+        <span class="scientific-name">{{specimen.genus}} {{specimen.species}} <span class="described-by">{{specimen.describedBy}}</span></span>
       </div>
       <div class="location-row">
         <span class="country-locality">{{specimen.country}}: {{specimen.locality}}</span>

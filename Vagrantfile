@@ -4,7 +4,7 @@
 #vm parameters
 VAGRANTFILE_API_VERSION = "2"
 VM_NAME = "bmnh-app-env"
-APP_PORT = 8080
+APP_PORT = 8088
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|

@@ -68,14 +68,17 @@
         <button type="button" v-on:click="exportPDF" class="btn btn-success btn-lg btn-block">Export</button>
       </div>
     </div>
+    <download-modal></download-modal>
   </div>
 </template>
 
 <script>
   import LabelPreview from '../components/LabelPreview.vue'
+  import DownloadModal from '../components/DownloadModal.vue'
   export default {
     components: {
-      LabelPreview
+      LabelPreview,
+      DownloadModal
     },
     data() {
       return {
@@ -109,7 +112,7 @@
           }
         }
         this.$http.post('/api/pdf', { paperSize: this.paperSize, specimens: specimensToPrint }).then((res) => {
-          window.open('/dist/pdf/specimen_labels.pdf');
+          $('.download-modal').modal('show');
         }, (res) => {
           console.log(res);
         });
