@@ -1,7 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-#vm parameters
 VAGRANTFILE_API_VERSION = "2"
 VM_NAME = "bmnh-app-env"
 APP_PORT = 8088

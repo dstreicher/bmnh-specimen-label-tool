@@ -15,4 +15,9 @@ sudo apt-get install -y npm
 sudo apt-get install -y mongodb-org
 sudo npm install npm -g
 
-# cd /vagrant && sudo npm install
+#install node modules
+cd /vagrant
+sudo npm install
+
+#setup bash profile
+echo 'cd /vagrant' >> /home/vagrant/.bashrc
