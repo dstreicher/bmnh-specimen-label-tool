@@ -202,7 +202,6 @@
         </fieldset>
       </form>
     </validator>
-    <pre>{{$validation | json}}</pre>
     <prompt-modal target="import-modal" title-text="Data Import" body-text="This catalog number has specimen data associated with it on the NHM Data Portal. Would you like to import the data?"
       confirm-text="Import"></prompt-modal>
     <prompt-modal target="saved-modal" title-text="Entry Saved" body-text="Specimen entry saved to database."></prompt-modal>

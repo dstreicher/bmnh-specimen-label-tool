@@ -84,10 +84,6 @@ export default {
       }
     },
     altitude: {
-      required: {
-        rule: false,
-        message: cvars.ERROR_REQUIRED_FIELD_MSG
-      }
     },
     fieldId: {
     },
