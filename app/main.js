@@ -11,6 +11,8 @@ Vue.use(VueResource);
 Vue.use(VueRouter);
 Vue.use(VueValidator);
 
+Vue.config.warnExpressionErrors = false;
+
 export var router = new VueRouter();
 
 router.map({
