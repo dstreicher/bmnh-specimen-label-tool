@@ -5,5 +5,7 @@ export default {
   API_URL: API_URL,
   RESOURCE_URL: RESOURCE_URL,
   EMU_SPECIMENS_SUB_DEPARTMENT_REPTILES_AMPHIBIANS: 'Reptiles & Amphibians',
-  ERROR_REQUIRED_FIELD_MSG: 'This field is required.'
+  ERROR_REQUIRED_FIELD_MSG: 'This field is required.',
+  ERROR_ADDITONAL_INFO_MAX_LENGTH: 'Text character limit reached.',
+  ERROR_INVALID_DATE_FORMAT: 'This format is invalid.'
 }

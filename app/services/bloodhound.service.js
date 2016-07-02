@@ -1,5 +1,6 @@
 var family = require('../assets/dataset-family.json');
 var type = require('../assets/dataset-type.json');
+var country = require('../assets/dataset-country.json');
 var alcoholComposition = require('../assets/dataset-alcoholComposition.json');
 
 export default {
@@ -18,6 +19,11 @@ export default {
       datumTokenizer: Bloodhound.tokenizers.whitespace,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       local: alcoholComposition
+    }),
+    country: new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.whitespace,
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      local: country
     })
   },
   initialize() {
@@ -26,5 +32,6 @@ export default {
     // $family.typeahead('val', $family.val());
     $('#type').typeahead(null, { name: 'type', source: this.datasets.type });
     $('#alcoholComposition').typeahead(null, { name: 'type', source: this.datasets.alcoholComposition });
+    $('#country').typeahead(null, { name: 'type', source: this.datasets.country });
   }
 }
