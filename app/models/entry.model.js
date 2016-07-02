@@ -111,16 +111,7 @@ export default {
         message: cvars.ERROR_REQUIRED_FIELD_MSG
       }
     },
-    dateMeasured: {
-      required: {
-        rule: true,
-        message: cvars.ERROR_REQUIRED_FIELD_MSG
-      },
-      pattern: {
-        rule: '/(0[1-9]|1[012])\/(1[0-9]|20)\d\d/',
-        message: cvars.ERROR_INVALID_DATE_FORMAT
-      }
-    },
+    dateMeasured: ['date', 'required'],
     additionalInfo: {
       maxLength: {
         rule: 100,
