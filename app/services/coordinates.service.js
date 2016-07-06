@@ -1,5 +1,8 @@
 export default {
   convertDMSToDD(degrees, minutes, seconds, direction) {
+    degrees = (isNaN(degrees)) ? 0 : parseFloat(degrees);
+    minutes = (isNaN(minutes)) ? 0 : parseFloat(minutes);
+    seconds = (isNaN(seconds)) ? 0 : parseFloat(seconds);
     var dd = degrees + minutes / 60 + seconds / (60 * 60);
 
     if (direction == "S" || direction == "W") {
