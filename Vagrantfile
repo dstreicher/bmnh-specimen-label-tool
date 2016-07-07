@@ -3,7 +3,7 @@
 
 VAGRANTFILE_API_VERSION = "2"
 VM_NAME = "bmnh-app-env"
-APP_PORT = 8088
+APP_PORT = 8080
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 8080, host: APP_PORT
   config.vm.network "forwarded_port", guest: 27017, host: 27017
 
-  config.vm.provision :shell, :path => "node.provision.sh"
+  config.vm.provision :shell, :path => "server.provision.sh"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = VM_NAME
