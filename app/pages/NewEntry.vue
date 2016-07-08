@@ -111,7 +111,7 @@
           <label for="longitude">Longitude *</label>
           <small v-for="error in $validation.longitude.errors" v-if="$validation.longitude.touched && $validation.longitude.invalid"
             class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.longitude | longitudeDisplay" lazy class="form-control" id="longitude" placeholder="37 30' 33.3 E" v-validate:longitude="validation.longitude"
+          <input type="text" v-model="form.longitude" lazy class="form-control" id="longitude" placeholder="37 30' 33.3 E" v-validate:longitude="validation.longitude"
             v-bind:class="{ 'form-control-danger': $validation.longitude.invalid, 'form-control-success': ($validation.longitude.touched && $validation.longitude.valid) }">
           <small class="text-muted">DD MM SS E/W format</small>
         </fieldset>
@@ -184,7 +184,7 @@
             class="text-danger pull-xs-right">{{error.message}}</small>
           <input type="text" v-model="form.dateMeasured" class="form-control" id="dateMeasured" placeholder="04/2016" v-validate:date-measured="validation.dateMeasured"
             v-bind:class="{ 'form-control-danger': $validation.dateMeasured.invalid, 'form-control-success': ($validation.dateMeasured.touched && $validation.dateMeasured.valid) }">
-          <small class="text-muted">MM/YYYY format</small>
+          <small class="text-muted">DD/MM/YYYY format</small>
         </fieldset>
 
         <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.additionalInfo.touched && $validation.additionalInfo.invalid), 'has-success': ($validation.additionalInfo.touched && $validation.additionalInfo.valid) }">

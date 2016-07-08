@@ -22,11 +22,11 @@ var config = {
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: './node_modules/jquery/dist/jquery.min.js', },
-      { from: './node_modules/tether/dist/js/tether.min.js', },
-      { from: './node_modules/typeahead.js/dist/typeahead.bundle.min.js', },
-      { from: './node_modules/bootstrap/dist/js/bootstrap.min.js', },
-      { from: './node_modules/bootstrap/dist/css/bootstrap.min.css', }
+      { from: './node_modules/jquery/dist/jquery.min.js' },
+      { from: './node_modules/tether/dist/js/tether.min.js' },
+      { from: './node_modules/typeahead.js/dist/typeahead.bundle.min.js' },
+      { from: './node_modules/bootstrap/dist/js/bootstrap.min.js' },
+      { from: './node_modules/bootstrap/dist/css/bootstrap.min.css' }
     ])
   ]
 };

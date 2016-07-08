@@ -36,11 +36,25 @@
     "vue-style-loader": "1.0.0",
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1",
-    "copy-webpack-plugin": "3.0.1"
+    "copy-webpack-plugin": "3.0.1",
+    "karma": "1.1.0",
+    "karma-cli": "1.0.1",
+    "karma-coverage": "0.5.5",
+    "karma-phantomjs-launcher": "1.0.1",
+    "karma-spec-reporter": "0.0.26",
+    "karma-mocha": "1.1.1",
+    "karma-sinon-chai": "1.2.2",
+    "karma-webpack": "1.7.0",
+    "mocha": "2.5.3",
+    "chai": "3.5.0",
+    "sinon": "1.17.4",
+    "sinon-chai": "2.8.0",
+    "phantomjs-prebuilt": "2.1.7"
   },
   "scripts": {
     "dev": "webpack-dev-server --inline --hot",
     "prestart": "webpack",
-    "start": "node server.js"
+    "start": "node server.js",
+    "unit": "karma start tests/unit/karma.conf.js --single-run"
   }
 }
