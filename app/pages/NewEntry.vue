@@ -84,7 +84,6 @@
                 class="text-danger pull-xs-right">{{error.message}}</small>
               <input type="text" v-model="form.describedBy" class="form-control" id="describedBy" placeholder="Loader, Gower, Hinde, Muller"
                 v-validate:described-by="validation.describedBy" v-bind:class="{ 'form-control-danger': $validation.describedBy.invalid, 'form-control-success': ($validation.describedBy.touched && $validation.describedBy.valid) }">
-              <small class="text-muted">last name</small>
             </fieldset>
           </div>
         </div>
@@ -183,7 +182,6 @@
                 class="text-danger pull-xs-right">{{error.message}}</small>
               <input type="text" v-model="form.collectedBy" class="form-control" id="collectedBy" placeholder="D. Gower, R. Hinde, S. Loader"
                 v-validate:collected-by="validation.collectedBy" v-bind:class="{ 'form-control-danger': $validation.collectedBy.invalid, 'form-control-success': ($validation.collectedBy.touched && $validation.collectedBy.valid) }">
-              <small class="text-muted">first initial, last name</small>
             </fieldset>
           </div>
 
@@ -213,19 +211,23 @@
               <label for="alcoholConcentration">Alcohol Concentration *</label>
               <small v-for="error in $validation.alcoholConcentration.errors" v-if="$validation.alcoholConcentration.touched && $validation.alcoholConcentration.invalid"
                 class="text-danger pull-xs-right">{{error.message}}</small>
-              <input type="text" v-model="form.alcoholConcentration | percentageDisplay" class="form-control" id="alcoholConcentration"
+              <input type="text" v-model="form.alcoholConcentration" class="form-control" id="alcoholConcentration"
                 placeholder="68.8" v-validate:alcohol-concentration="validation.alcoholConcentration" v-bind:class="{ 'form-control-danger': $validation.alcoholConcentration.invalid, 'form-control-success': ($validation.alcoholConcentration.touched && $validation.alcoholConcentration.valid) }">
-              <small class="text-muted">in percentage {{form.alcoholConcentration}}</small>
+              <small class="text-muted">in percentage</small>
             </fieldset>
           </div>
 
           <div class="col-xs-12 col-md-12">
-            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.alcoholComposition.touched && $validation.alcoholComposition.invalid), 'has-success': ($validation.alcoholComposition.touched && $validation.alcoholComposition.valid) }">
+            <fieldset class="form-group">
               <label for="alcoholComposition">Alcohol Composition *</label>
-              <small v-for="error in $validation.alcoholComposition.errors" v-if="$validation.alcoholComposition.touched && $validation.alcoholComposition.invalid"
-                class="text-danger pull-xs-right">{{error.message}}</small>
-              <input type="text" v-model="form.alcoholComposition" class="form-control" id="alcoholComposition" placeholder="Ethanol" v-validate:alcohol-composition="validation.alcoholComposition"
-                v-bind:class="{ 'form-control-danger': $validation.alcoholComposition.invalid, 'form-control-success': ($validation.alcoholComposition.touched && $validation.alcoholComposition.valid) }">
+              <select v-model="form.alcoholComposition" class="form-control" id="alcoholComposition">
+                <option>Ethanol</option>
+                <option>Formalin</option>
+                <option>Glycerol</option>
+                <option>IMS</option>
+                <option>Isopropyl</option>
+                <option>Unknown</option>
+              </select>
             </fieldset>
           </div>
 
@@ -234,7 +236,7 @@
               <label for="dateMeasured">Date Measured *</label>
               <small v-for="error in $validation.dateMeasured.errors" v-if="$validation.dateMeasured.touched && $validation.dateMeasured.invalid"
                 class="text-danger pull-xs-right">{{error.message}}</small>
-              <input type="text" v-model="form.dateMeasured" class="form-control" id="dateMeasured" placeholder="04/2016" v-validate:date-measured="validation.dateMeasured"
+              <input type="text" v-model="form.dateMeasured" class="form-control" id="dateMeasured" placeholder="10/06/2016" v-validate:date-measured="validation.dateMeasured"
                 v-bind:class="{ 'form-control-danger': $validation.dateMeasured.invalid, 'form-control-success': ($validation.dateMeasured.touched && $validation.dateMeasured.valid) }">
               <small class="text-muted">DD/MM/YYYY format</small>
             </fieldset>
@@ -283,6 +285,7 @@
 <script>
   import entryModel from '../models/entry.model'
   import cvars from '../services/cvars.service'
+  import validators from '../services/validators.service'
   import Bloodhound from '../services/bloodhound.service'
   import DataPortal from '../services/dataportal.service'
   import coordinates from '../services/coordinates.service'
@@ -301,40 +304,6 @@
     },
     ready() {
       Bloodhound.initialize();
-    },
-    filters: {
-      percentageDisplay: {
-        read(val) {
-          return val + '%';
-        },
-        write(val, oldVal) {
-          var number = +val.replace(/[^\d.]/g, '');
-          return isNaN(number) ? 0 : parseFloat(number.toFixed(2));
-        }
-      },
-      longitudeDisplay: {
-        read(val) {
-          var parts = val.split(/[^\d\w]+/);
-          if (parts.length === 4) {
-            return coordinates.formatDMS(parts[0], parts[1], parts[2], parts[3]);
-          }
-          else {
-            return coordinates.convertDDToDMS(val, true);
-          }
-        },
-        write(val, oldVal) {
-          var parts = val.split(/[^\d\w]+/);
-          return coordinates.convertDMSToDD(parts[0], parts[1], parts[2], parts[3]);
-        }
-      }
-    },
-    validators: {
-      date: {
-        message: cvars.ERROR_INVALID_DATE_FORMAT,
-        check: function (val) {
-          return /(0[1-9]|1[012])\/(1[0-9]|20)\d\d/.test(val);
-        }
-      }
     },
     methods: {
       clearTypeFields() {
@@ -367,26 +336,7 @@
       saveEntry() {
         var specimen = this.$resource('api/specimens{/id}');
         specimen.save(this.form).then((res) => {
-          this.form = entryModel.defaults;
-          // this.form.catalogNumber = '';
-          // this.form.family = '';
-          // this.form.genus = '';
-          // this.form.species = '';
-          // this.form.type = '';
-          // this.form.describedBy = '';
-          // this.form.country = '';
-          // this.form.locality = '';
-          // this.form.latitude = '';
-          // this.form.longitude = '';
-          // this.form.altitude = '';
-          // this.form.fieldId = '';
-          // this.form.collectedBy = '';
-          // this.form.collectionDate = '';
-          // this.form.alcoholConcentration = '';
-          // this.form.alcoholComposition = '';
-          // this.form.dateMeasured = '';
-          // this.form.additionalInfo = '';
-          // this.form.labelSize = 'Small';
+          this.form = Vue.util.extend({}, entryModel.defaults);
           $('.saved-modal').modal('show');
         }, (res) => {
           console.log('failure!');

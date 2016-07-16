@@ -17,7 +17,7 @@ export default {
     collectedBy: '',
     collectionDate: '',
     alcoholConcentration: '',
-    alcoholComposition: '',
+    alcoholComposition: 'Ethanol',
     dateMeasured: '',
     additionalInfo: '',
     labelSize: 'Small'
@@ -83,8 +83,7 @@ export default {
         message: cvars.ERROR_REQUIRED_FIELD_MSG
       }
     },
-    altitude: {
-    },
+    altitude: ['number'],
     fieldId: {
     },
     collectedBy: {
@@ -99,18 +98,7 @@ export default {
         message: cvars.ERROR_REQUIRED_FIELD_MSG
       }
     },
-    alcoholConcentration: {
-      required: {
-        rule: true,
-        message: cvars.ERROR_REQUIRED_FIELD_MSG
-      }
-    },
-    alcoholComposition: {
-      required: {
-        rule: true,
-        message: cvars.ERROR_REQUIRED_FIELD_MSG
-      }
-    },
+    alcoholConcentration: ['percentage', 'required'],
     dateMeasured: ['date', 'required'],
     additionalInfo: {
       maxLength: {
