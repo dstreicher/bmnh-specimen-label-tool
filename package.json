@@ -20,6 +20,7 @@
     "vue": "1.0.24"
   },
   "devDependencies": {
+    "fast-csv": "2.0.1",
     "babel-core": "6.9.1",
     "babel-loader": "6.2.4",
     "babel-plugin-transform-runtime": "6.9.0",

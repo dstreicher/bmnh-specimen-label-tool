@@ -1,0 +1,698 @@
+{
+  "Allophrynidae": [
+    "Allophryne"
+  ],
+  "Alsodidae": [
+    "Alsodes",
+    "Eupsophus",
+    "Limnomedusa"
+  ],
+  "Alytidae": [
+    "Latonia",
+    "Alytes",
+    "Discoglossus"
+  ],
+  "Arthroleptidae": [
+    "Arthroleptis",
+    "Astylosternus",
+    "Cardioglossa",
+    "Leptodactylodon",
+    "Leptopelis",
+    "Nyctibates",
+    "Scotobleps",
+    "Trichobatrachus"
+  ],
+  "Ascaphidae": [
+    "Ascaphus"
+  ],
+  "Batrachylidae": [
+    "Atelognathus",
+    "Batrachyla",
+    "Chaltenobatrachus",
+    "Hylorina"
+  ],
+  "Bombinatoridae": [
+    "Barbourula",
+    "Bombina"
+  ],
+  "Brachycephalidae": [
+    "Brachycephalus",
+    "Ischnocnema"
+  ],
+  "Brevicipitidae": [
+    "Balebreviceps",
+    "Breviceps",
+    "Callulina",
+    "Probreviceps",
+    "Spelaeophryne"
+  ],
+  "Bufonidae": [
+    "Adenomus",
+    "Altiphrynoides",
+    "Amazophrynella",
+    "Anaxyrus",
+    "Ansonia",
+    "Atelopus",
+    "Barbarophryne",
+    "Blythophryne",
+    "Bufo",
+    "Bufoides",
+    "Bufotes",
+    "Capensibufo",
+    "Churamiti",
+    "Dendrophryniscus",
+    "Didynamipus",
+    "Duttaphrynus",
+    "Epidalea",
+    "Frostius",
+    "Ghatophryne",
+    "Incilius",
+    "Ingerophrynus",
+    "Laurentophryne",
+    "Leptophryne",
+    "Melanophryniscus",
+    "Mertensophryne",
+    "Metaphryniscus",
+    "Nannophryne",
+    "Nectophryne",
+    "Nectophrynoides",
+    "Nimbaphrynoides",
+    "Oreophrynella",
+    "Osornophryne",
+    "Parapelophryne",
+    "Pedostibes",
+    "Pelophryne",
+    "Peltophryne",
+    "Phrynoidis",
+    "Poyntonophrynus",
+    "Pseudobufo",
+    "Rentapia",
+    "Rhaebo",
+    "Rhinella",
+    "Sabahphrynus",
+    "Schismaderma",
+    "Sclerophrys",
+    "Strauchbufo",
+    "Truebella",
+    "Vandijkophrynus",
+    "Werneria",
+    "Wolterstorffina",
+    "Xanthophryne"
+  ],
+  "Calyptocephalellidae": [
+    "Calyptocephalella",
+    "Telmatobufo"
+  ],
+  "Centrolenidae": [
+    "Centrolene",
+    "Chimerella",
+    "Cochranella",
+    "Espadarana",
+    "Ikakogi",
+    "Nymphargus",
+    "Rulyrana",
+    "Sachatamia",
+    "Teratohyla",
+    "Vitreorana",
+    "Celsiella",
+    "Hyalinobatrachium"
+  ],
+  "Ceratobatrachidae": [
+    "Liurana",
+    "Alcalus",
+    "Cornufer",
+    "Platymantis"
+  ],
+  "Ceratophryidae": [
+    "Ceratophrys",
+    "Chacophrys",
+    "Lepidobatrachus"
+  ],
+  "Ceuthomantidae": [
+    "Ceuthomantis"
+  ],
+  "Conrauidae": [
+    "Conraua"
+  ],
+  "Craugastoridae": [
+    "Craugastor",
+    "Haddadus",
+    "Pristimantis",
+    "Dischidodactylus",
+    "Tachiramantis",
+    "Yunganastes",
+    "Barycholos",
+    "Bryophryne",
+    "Euparkerella",
+    "Holoaden",
+    "Noblella",
+    "Psychrophrynella",
+    "Atopophrynus",
+    "Geobatrachus",
+    "Hypodactylus",
+    "Lynchius",
+    "Mucubatrachus",
+    "Niceforonia",
+    "Oreobates",
+    "Paramophrynella",
+    "Phrynopus",
+    "Strabomantis"
+  ],
+  "Cycloramphidae": [
+    "Cycloramphus",
+    "Thoropa"
+  ],
+  "Dendrobatidae": [
+    "Allobates",
+    "Andinobates",
+    "Anomaloglossus",
+    "Aromobates",
+    "Mannophryne",
+    "Rheobates",
+    "Ameerega",
+    "Colostethus",
+    "Epipedobates",
+    "Silverstoneia",
+    "Adelphobates",
+    "Dendrobates",
+    "Excidobates",
+    "Minyobates",
+    "Oophaga",
+    "Phyllobates",
+    "Ranitomeya",
+    "Hyloxalus"
+  ],
+  "Dicroglossidae": [
+    "Alcalus",
+    "Allopaa",
+    "Chrysopaa",
+    "Euphlyctis",
+    "Fejervarya",
+    "Hoplobatrachus",
+    "Limnonectes",
+    "Nannophrys",
+    "Nanorana",
+    "Ombrana",
+    "Quasipaa",
+    "Sphaerotheca",
+    "Ingerana",
+    "Occidozyga"
+  ],
+  "Eleutherodactylidae": [
+    "Diasporus",
+    "Eleutherodactylus",
+    "Adelophryne",
+    "Phyzelaphryne"
+  ],
+  "Heleophrynidae": [
+    "Hadromophryne",
+    "Heleophryne"
+  ],
+  "Hemiphractidae": [
+    "Cryptobatrachus",
+    "Flectonotus",
+    "Fritziana",
+    "Gastrotheca",
+    "Hemiphractus",
+    "Stefania"
+  ],
+  "Hemisotidae": [
+    "Hemisus"
+  ],
+  "Hylidae": [
+    "Dryaderces",
+    "Lysapsus",
+    "Acris",
+    "Anotheca",
+    "Aparasphenodon",
+    "Aplastodiscus",
+    "Argenteohyla",
+    "Bokermannohyla",
+    "Bromeliohyla",
+    "Charadrahyla",
+    "Corythomantis",
+    "Dendropsophus",
+    "Diaglena",
+    "Duellmanohyla",
+    "Ecnomiohyla",
+    "Exerodonta",
+    "Hyla",
+    "Hyliola",
+    "Hylomantis",
+    "Hyloscirtus",
+    "Hypsiboas",
+    "Isthmohyla",
+    "Itapotihyla",
+    "Megastomatohyla",
+    "Myersiohyla",
+    "Nyctimantis",
+    "Osteocephalus",
+    "Osteopilus",
+    "Phyllodytes",
+    "Plectrohyla",
+    "Pseudacris",
+    "Pseudis",
+    "Ptychohyla",
+    "Scarthyla",
+    "Scinax",
+    "Smilisca",
+    "Sphaenorhynchus",
+    "Tepuihyla",
+    "Tlalocohyla",
+    "Trachycephalus",
+    "Triprion",
+    "Xenohyla",
+    "Cyclorana",
+    "Litoria",
+    "Nyctimystes",
+    "Agalychnis",
+    "Cruziohyla",
+    "Pachymedusa",
+    "Phasmahyla",
+    "Phrynomedusa",
+    "Phyllomedusa"
+  ],
+  "Hylodidae": [
+    "Crossodactylus",
+    "Hylodes",
+    "Megaelosia"
+  ],
+  "Hyperoliidae": [
+    "Acanthixalus",
+    "Afrixalus",
+    "Alexteroon",
+    "Arlequinus",
+    "Callixalus",
+    "Chlorolius",
+    "Chrysobatrachus",
+    "Cryptothylax",
+    "Heterixalus",
+    "Hyperolius",
+    "Kassina",
+    "Kassinula",
+    "Morerella",
+    "Opisthothylax",
+    "Paracassina",
+    "Phlyctimantis",
+    "Semnodactylus",
+    "Tachycnemis"
+  ],
+  "Leiopelmatidae": [
+    "Leiopelma"
+  ],
+  "Leptodactylidae": [
+    "Adenomera",
+    "Crossodactylodes",
+    "Edalorhina",
+    "Engystomops",
+    "Eupemphix",
+    "Hydrolaetare",
+    "Leptodactylus",
+    "Lithodytes",
+    "Paratelmatobius",
+    "Physalaemus",
+    "Pleurodema",
+    "Pseudopaludicola",
+    "Scythrophrys",
+    "Somuncuria",
+    "Rupirana"
+  ],
+  "Mantellidae": [
+    "Boophis",
+    "Aglyptodactylus",
+    "Laliostoma",
+    "Blommersia",
+    "Boehmantis",
+    "Gephyromantis",
+    "Guibemantis",
+    "Mantella",
+    "Mantidactylus",
+    "Spinomantis",
+    "Tsingymantis",
+    "Wakea"
+  ],
+  "Megophryidae": [
+    "Borneophrys",
+    "Brachytarsophrys",
+    "Leptobrachella",
+    "Leptobrachium",
+    "Leptolalax",
+    "Megophrys",
+    "Ophryophryne",
+    "Oreolalax",
+    "Scutiger"
+  ],
+  "Micrixalidae": [
+    "Micrixalus"
+  ],
+  "Microhylidae": [
+    "Adelastes",
+    "Anilany",
+    "Gastrophrynoides",
+    "Phrynella",
+    "Albericus",
+    "Aphantophryne",
+    "Asterophrys",
+    "Austrochaperina",
+    "Barygenys",
+    "Callulops",
+    "Choerophryne",
+    "Cophixalus",
+    "Copiula",
+    "Genyophryne",
+    "Hylophorbus",
+    "Liophryne",
+    "Mantophryne",
+    "Metamagnusia",
+    "Oninia",
+    "Oreophryne",
+    "Oxydactyla",
+    "Paedophryne",
+    "Pseudocallulops",
+    "Sphenophryne",
+    "Xenorhina",
+    "Anodonthyla",
+    "Cophyla",
+    "Madecassophryne",
+    "Platypelis",
+    "Plethodontohyla",
+    "Rhombophryne",
+    "Stumpffia",
+    "Dyscophus",
+    "Arcovomer",
+    "Chiasmocleis",
+    "Ctenophryne",
+    "Dasypops",
+    "Dermatonotus",
+    "Elachistocleis",
+    "Gastrophryne",
+    "Hamptophryne",
+    "Hypopachus",
+    "Myersiella",
+    "Stereocyclops",
+    "Hoplophryne",
+    "Parhoplophryne",
+    "Kalophrynus",
+    "Melanobatrachus",
+    "Calluella",
+    "Chaperina",
+    "Glyphoglossus",
+    "Kaloula",
+    "Metaphrynella",
+    "Microhyla",
+    "Micryletta",
+    "Uperodon",
+    "Otophryne",
+    "Synapturanus",
+    "Phrynomantis",
+    "Paradoxophyla",
+    "Scaphiophryne"
+  ],
+  "Myobatrachidae": [
+    "Adelotus",
+    "Heleioporus",
+    "Lechriodus",
+    "Limnodynastes",
+    "Mixophyes",
+    "Neobatrachus",
+    "Notaden",
+    "Philoria",
+    "Platyplectrum",
+    "Pseudophryne",
+    "Arenophryne",
+    "Assa",
+    "Crinia",
+    "Geocrinia",
+    "Metacrinia",
+    "Myobatrachus",
+    "Paracrinia",
+    "Rheobatrachus",
+    "Spicospina",
+    "Taudactylus",
+    "Uperoleia"
+  ],
+  "Nasikabatrachidae": [
+    "Nasikabatrachus"
+  ],
+  "Nyctibatrachidae": [
+    "Lankanectes",
+    "Nyctibatrachus"
+  ],
+  "Odontobatrachidae": [
+    "Odontobatrachus"
+  ],
+  "Odontophrynidae": [
+    "Macrogenioglottus",
+    "Odontophrynus",
+    "Proceratophrys"
+  ],
+  "Pelobatidae": [
+    "Pelobates"
+  ],
+  "Pelodytidae": [
+    "Pelodytes"
+  ],
+  "Petropedetidae": [
+    "Arthroleptides",
+    "Ericabatrachus",
+    "Petropedetes"
+  ],
+  "Phrynobatrachidae": [
+    "Phrynobatrachus"
+  ],
+  "Pipidae": [
+    "Hymenochirus",
+    "Pipa",
+    "Pseudhymenochirus",
+    "Xenopus"
+  ],
+  "Ptychadenidae": [
+    "Hildebrandtia",
+    "Lanzarana",
+    "Ptychadena"
+  ],
+  "Pyxicephalidae": [
+    "Amietia",
+    "Anhydrophryne",
+    "Arthroleptella",
+    "Cacosternum",
+    "Microbatrachella",
+    "Natalobatrachus",
+    "Nothophryne",
+    "Poyntonia",
+    "Strongylopus",
+    "Tomopterna",
+    "Aubria",
+    "Pyxicephalus"
+  ],
+  "Ranidae": [
+    "Abavorana",
+    "Amnirana",
+    "Amolops",
+    "Babina",
+    "Chalcorana",
+    "Clinotarsus",
+    "Glandirana",
+    "Huia",
+    "Humerana",
+    "Hydrophylax",
+    "Hylarana",
+    "Indosylvirana",
+    "Meristogenys",
+    "Odorrana",
+    "Papurana",
+    "Pelophylax",
+    "Pterorana",
+    "Pulchrana",
+    "Rana",
+    "Sanguirana",
+    "Staurois",
+    "Sylvirana"
+  ],
+  "Ranixalidae": [
+    "Indirana"
+  ],
+  "Rhacophoridae": [
+    "Nasutixalus",
+    "Buergeria",
+    "Beddomixalus",
+    "Chiromantis",
+    "Dendrobatorana",
+    "Feihyla",
+    "Ghatixalus",
+    "Gracixalus",
+    "Kurixalus",
+    "Liuixalus",
+    "Mercurana",
+    "Philautus",
+    "Polypedates",
+    "Pseudophilautus",
+    "Raorchestes",
+    "Rhacophorus",
+    "Taruga",
+    "Theloderma"
+  ],
+  "Rhinodermatidae": [
+    "Insuetophrynus",
+    "Rhinoderma"
+  ],
+  "Rhinophrynidae": [
+    "Rhinophrynus"
+  ],
+  "Scaphiopodidae": [
+    "Scaphiopus",
+    "Spea"
+  ],
+  "Sooglossidae": [
+    "Sechellophryne",
+    "Sooglossus"
+  ],
+  "Telmatobiidae": [
+    "Batrachophrynus",
+    "Telmatobius"
+  ],
+  "Cyclramphidae": [
+    "Zachaenus"
+  ],
+  "Ambystomatidae": [
+    "Ambystoma"
+  ],
+  "Amphiumidae": [
+    "Amphiuma"
+  ],
+  "Cryptobranchidae": [
+    "Andrias",
+    "Cryptobranchus"
+  ],
+  "Dicamptodontidae": [
+    "Dicamptodon"
+  ],
+  "Hynobiidae": [
+    "Batrachuperus",
+    "Hynobius",
+    "Liua",
+    "Pachyhynobius",
+    "Paradactylodon",
+    "Pseudohynobius",
+    "Ranodon",
+    "Salamandrella",
+    "Onychodactylus"
+  ],
+  "Plethodontidae": [
+    "Aquiloeurycea",
+    "Batrachoseps",
+    "Bolitoglossa",
+    "Bradytriton",
+    "Chiropterotriton",
+    "Cryptotriton",
+    "Dendrotriton",
+    "Eurycea",
+    "Gyrinophilus",
+    "Hemidactylium",
+    "Isthmura",
+    "Ixalotriton",
+    "Nototriton",
+    "Nyctanolis",
+    "Oedipina",
+    "Parvimolge",
+    "Pseudoeurycea",
+    "Pseudotriton",
+    "Stereochilus",
+    "Thorius",
+    "Urspelerpes",
+    "Aneides",
+    "Desmognathus",
+    "Ensatina",
+    "Hydromantes",
+    "Karsenia",
+    "Phaeognathus",
+    "Plethodon"
+  ],
+  "Proteidae": [
+    "Necturus",
+    "Proteus"
+  ],
+  "Rhyacotritonidae": [
+    "Rhyacotriton"
+  ],
+  "Salamandridae": [
+    "Calotriton",
+    "Cynops",
+    "Echinotriton",
+    "Euproctus",
+    "Ichthyosaura",
+    "Laotriton",
+    "Lissotriton",
+    "Neurergus",
+    "Notophthalmus",
+    "Ommatotriton",
+    "Pachytriton",
+    "Paramesotriton",
+    "Pleurodeles",
+    "Taricha",
+    "Triturus",
+    "Tylototriton",
+    "Chioglossa",
+    "Lyciasalamandra",
+    "Mertensiella",
+    "Salamandra",
+    "Salamandrina"
+  ],
+  "Sirenidae": [
+    "Pseudobranchus",
+    "Siren"
+  ],
+  "Caeciliidae": [
+    "Caecilia",
+    "Oscaecilia"
+  ],
+  "Chikilidae": [
+    "Chikila"
+  ],
+  "Dermophiidae": [
+    "Dermophis",
+    "Geotrypetes",
+    "Gymnopis",
+    "Schistometopum"
+  ],
+  "Herpelidae": [
+    "Boulengerula",
+    "Herpele"
+  ],
+  "Ichthyophiidae": [
+    "Ichthyophis",
+    "Uraeotyphlus"
+  ],
+  "Indotyphlidae": [
+    "Gegeneophis",
+    "Grandisonia",
+    "Hypogeophis",
+    "Idiocranium",
+    "Indotyphlus",
+    "Praslinia",
+    "Sylvacaecilia"
+  ],
+  "Rhinatrematidae": [
+    "Epicrionops",
+    "Rhinatrema"
+  ],
+  "Scolecomorphidae": [
+    "Crotaphatrema",
+    "Scolecomorphus"
+  ],
+  "Siphonopidae": [
+    "Brasilotyphlus",
+    "Luetkenotyphlus",
+    "Microcaecilia",
+    "Mimosiphonops",
+    "Parvicaecilia",
+    "Siphonops"
+  ],
+  "Typhlonectidae": [
+    "Atretochoana",
+    "Chthonerpeton",
+    "Nectocaecilia",
+    "Potamotyphlus",
+    "Typhlonectes"
+  ]
+}
