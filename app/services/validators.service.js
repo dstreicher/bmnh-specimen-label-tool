@@ -59,6 +59,19 @@ export default {
       return true;
     }
   },
+  geocoordinate: {
+    message: cvars.ERROR_INVALID_FORMAT,
+    check: function (val) {
+      if (isEmpty(val)) {
+        return true;
+      }
+      var n = parseFloat(val);
+      if (n < -90 || n > 90) {
+        return false;
+      }
+      return !isNaN(n) && isFinite(val);
+    }
+  },
   number: {
     message: cvars.ERROR_INVALID_FORMAT,
     check: function (val) {
