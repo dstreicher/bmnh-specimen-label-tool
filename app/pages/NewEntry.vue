@@ -2,29 +2,34 @@
   <div>
     <validator name="validation">
       <form novalidate>
-        <fieldset class="form-group">
-          <div class="col-xs-12">
-            <small class="text-muted">* indicates required field</small>
-          </div>
-        </fieldset>
 
-        <fieldset class="form-group">
-          <div class="section-header bg-inverse">
-            <div class="row">
-              <div class="col-xs-5 col-sm-8">
-                <span>Classification</span>
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group">
+              <div class="col-xs-12">
+                <small class="text-muted">* indicates required field</small>
               </div>
-              <div class="col-xs-7 col-sm-4">
-                <label class="c-input c-checkbox">
+            </fieldset>
+          </div>
+
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group">
+              <div class="section-header bg-inverse">
+                <div class="row">
+                  <div class="col-xs-5 col-sm-8">
+                    <span>Classification</span>
+                  </div>
+                  <div class="col-xs-7 col-sm-4">
+                    <label class="c-input c-checkbox">
                   <input v-model="isTypeSpecimen" v-on:change="clearTypeFields" id="typeCheckbox" type="checkbox">
                   <span class="c-indicator"></span>Type Specimen
                 </label>
+                  </div>
+                </div>
               </div>
-            </div>
+            </fieldset>
           </div>
-        </fieldset>
 
-        <div class="row">
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.catalogNumber.touched && $validation.catalogNumber.invalid), 'has-success': ($validation.catalogNumber.touched && $validation.catalogNumber.valid) }">
               <label for="catalogNumber">Catalog Number *</label>
@@ -35,6 +40,7 @@
               <small class="text-muted">BMNH / NHMUK</small>
             </fieldset>
           </div>
+
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.family.touched && $validation.family.invalid), 'has-success': ($validation.family.touched && $validation.family.valid) }">
               <label for="family">Family *</label>
@@ -43,6 +49,7 @@
                 v-bind:class="{ 'form-control-danger': $validation.family.invalid, 'form-control-success': ($validation.family.touched && $validation.family.valid) }">
             </fieldset>
           </div>
+
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.genus.touched && $validation.genus.invalid), 'has-success': ($validation.genus.touched && $validation.genus.valid) }">
               <label for="genus">Genus *</label>
@@ -51,6 +58,7 @@
                 v-bind:class="{ 'form-control-danger': $validation.genus.invalid, 'form-control-success': ($validation.genus.touched && $validation.genus.valid) }">
             </fieldset>
           </div>
+
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.species.touched && $validation.species.invalid), 'has-success': ($validation.species.touched && $validation.species.valid) }">
               <label for="species">Species *</label>
@@ -59,6 +67,7 @@
                 v-bind:class="{ 'form-control-danger': $validation.species.invalid, 'form-control-success': ($validation.species.touched && $validation.species.valid) }">
             </fieldset>
           </div>
+
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group" :disabled="!isTypeSpecimen" v-bind:class="{ 'has-danger': ($validation.type.touched && $validation.type.invalid), 'has-success': ($validation.type.touched && $validation.type.valid) }">
               <label for="type">Type</label>
@@ -67,6 +76,7 @@
                 v-bind:class="{ 'form-control-danger': $validation.type.invalid, 'form-control-success': ($validation.type.touched && $validation.type.valid) }">
             </fieldset>
           </div>
+
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group" :disabled="!isTypeSpecimen" v-bind:class="{ 'has-danger': ($validation.describedBy.touched && $validation.describedBy.invalid), 'has-success': ($validation.describedBy.touched && $validation.describedBy.valid) }">
               <label for="describedBy">Described By</label>
@@ -79,135 +89,188 @@
           </div>
         </div>
 
-        <fieldset class="form-group">
-          <div class="section-header bg-inverse">
-            <span>Location</span>
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group">
+              <div class="section-header bg-inverse">
+                <span>Location</span>
+              </div>
+            </fieldset>
           </div>
-        </fieldset>
 
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.country.touched && $validation.country.invalid), 'has-success': ($validation.country.touched && $validation.country.valid) }">
-          <label for="country">Country *</label>
-          <small v-for="error in $validation.country.errors" v-if="$validation.country.touched && $validation.country.invalid" class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.country" class="form-control" id="country" placeholder="Tanzania" v-validate:country="validation.country"
-            v-bind:class="{ 'form-control-danger': $validation.country.invalid, 'form-control-success': ($validation.country.touched && $validation.country.valid) }">
-        </fieldset>
-
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.locality.touched && $validation.locality.invalid), 'has-success': ($validation.locality.touched && $validation.locality.valid) }">
-          <label for="locality">Locality *</label>
-          <small v-for="error in $validation.locality.errors" v-if="$validation.locality.touched && $validation.locality.invalid" class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.locality" class="form-control" id="locality" placeholder="Morogoro, Maskati Side of the Nguru"
-            v-validate:locality="validation.locality" v-bind:class="{ 'form-control-danger': $validation.locality.invalid, 'form-control-success': ($validation.locality.touched && $validation.locality.valid) }">
-        </fieldset>
-
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.latitude.touched && $validation.latitude.invalid), 'has-success': ($validation.latitude.touched && $validation.latitude.valid) }">
-          <label for="latitude">Latitude *</label>
-          <small v-for="error in $validation.latitude.errors" v-if="$validation.latitude.touched && $validation.latitude.invalid" class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.latitude" class="form-control" id="latitude" placeholder="06 03' 51.1 S" v-validate:latitude="validation.latitude"
-            v-bind:class="{ 'form-control-danger': $validation.latitude.invalid, 'form-control-success': ($validation.latitude.touched && $validation.latitude.valid) }">
-          <small class="text-muted">DD MM SS N/S format</small>
-        </fieldset>
-
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.longitude.touched && $validation.longitude.invalid), 'has-success': ($validation.longitude.touched && $validation.longitude.valid) }">
-          <label for="longitude">Longitude *</label>
-          <small v-for="error in $validation.longitude.errors" v-if="$validation.longitude.touched && $validation.longitude.invalid"
-            class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.longitude" lazy class="form-control" id="longitude" placeholder="37 30' 33.3 E" v-validate:longitude="validation.longitude"
-            v-bind:class="{ 'form-control-danger': $validation.longitude.invalid, 'form-control-success': ($validation.longitude.touched && $validation.longitude.valid) }">
-          <small class="text-muted">DD MM SS E/W format</small>
-        </fieldset>
-
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.altitude.touched && $validation.altitude.invalid), 'has-success': ($validation.altitude.touched && $validation.altitude.valid) }">
-          <label for="altitude">Altitude</label>
-          <small v-for="error in $validation.altitude.errors" v-if="$validation.altitude.touched && $validation.altitude.invalid" class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.altitude" class="form-control" id="altitude" placeholder="1790" v-validate:altitude="validation.altitude"
-            v-bind:class="{ 'form-control-danger': $validation.altitude.invalid, 'form-control-success': ($validation.altitude.touched && $validation.altitude.valid) }">
-          <small class="text-muted">measured in meters</small>
-        </fieldset>
-
-        <fieldset class="form-group">
-          <div class="section-header bg-inverse">
-            <span>Field Data</span>
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.country.touched && $validation.country.invalid), 'has-success': ($validation.country.touched && $validation.country.valid) }">
+              <label for="country">Country *</label>
+              <small v-for="error in $validation.country.errors" v-if="$validation.country.touched && $validation.country.invalid" class="text-danger pull-xs-right">{{error.message}}</small>
+              <input type="text" v-model="form.country" class="form-control" id="country" placeholder="Tanzania" v-validate:country="validation.country"
+                v-bind:class="{ 'form-control-danger': $validation.country.invalid, 'form-control-success': ($validation.country.touched && $validation.country.valid) }">
+            </fieldset>
           </div>
-        </fieldset>
 
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.fieldId.touched && $validation.fieldId.invalid), 'has-success': ($validation.fieldId.touched && $validation.fieldId.valid) }">
-          <label for="fieldId">Field ID</label>
-          <small v-for="error in $validation.fieldId.errors" v-if="$validation.fieldId.touched && $validation.fieldId.invalid" class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.fieldId" class="form-control" id="fieldId" placeholder="MW 6960" v-validate:field-id="validation.fieldId"
-            v-bind:class="{ 'form-control-danger': $validation.fieldId.invalid, 'form-control-success': ($validation.fieldId.touched && $validation.fieldId.valid) }">
-        </fieldset>
-
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.collectedBy.touched && $validation.collectedBy.invalid), 'has-success': ($validation.collectedBy.touched && $validation.collectedBy.valid) }">
-          <label for="collectedBy">Collected By *</label>
-          <small v-for="error in $validation.collectedBy.errors" v-if="$validation.collectedBy.touched && $validation.collectedBy.invalid"
-            class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.collectedBy" class="form-control" id="collectedBy" placeholder="D. Gower, R. Hinde, S. Loader"
-            v-validate:collected-by="validation.collectedBy" v-bind:class="{ 'form-control-danger': $validation.collectedBy.invalid, 'form-control-success': ($validation.collectedBy.touched && $validation.collectedBy.valid) }">
-          <small class="text-muted">first initial, last name</small>
-        </fieldset>
-
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.collectionDate.touched && $validation.collectionDate.invalid), 'has-success': ($validation.collectionDate.touched && $validation.collectionDate.valid) }">
-          <label for="collectionDate">Collection Date</label>
-          <small v-for="error in $validation.collectionDate.errors" v-if="$validation.collectionDate.touched && $validation.collectionDate.invalid"
-            class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.collectionDate" class="form-control" id="collectionDate" placeholder="14/06/2003" v-validate:collection-date="validation.collectionDate"
-            v-bind:class="{ 'form-control-danger': $validation.collectionDate.invalid, 'form-control-success': ($validation.collectionDate.touched && $validation.collectionDate.valid) }">
-          <small class="text-muted">DD/MM/YYYY format</small>
-        </fieldset>
-
-        <fieldset class="form-group">
-          <div class="section-header bg-inverse">
-            <span>Collection Data</span>
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.locality.touched && $validation.locality.invalid), 'has-success': ($validation.locality.touched && $validation.locality.valid) }">
+              <label for="locality">Locality *</label>
+              <small v-for="error in $validation.locality.errors" v-if="$validation.locality.touched && $validation.locality.invalid" class="text-danger pull-xs-right">{{error.message}}</small>
+              <input type="text" v-model="form.locality" class="form-control" id="locality" placeholder="Morogoro, Maskati Side of the Nguru"
+                v-validate:locality="validation.locality" v-bind:class="{ 'form-control-danger': $validation.locality.invalid, 'form-control-success': ($validation.locality.touched && $validation.locality.valid) }">
+            </fieldset>
           </div>
-        </fieldset>
 
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.alcoholConcentration.touched && $validation.alcoholConcentration.invalid), 'has-success': ($validation.alcoholConcentration.touched && $validation.alcoholConcentration.valid) }">
-          <label for="alcoholConcentration">Alcohol Concentration *</label>
-          <small v-for="error in $validation.alcoholConcentration.errors" v-if="$validation.alcoholConcentration.touched && $validation.alcoholConcentration.invalid"
-            class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.alcoholConcentration | percentageDisplay" class="form-control" id="alcoholConcentration"
-            placeholder="68.8" v-validate:alcohol-concentration="validation.alcoholConcentration" v-bind:class="{ 'form-control-danger': $validation.alcoholConcentration.invalid, 'form-control-success': ($validation.alcoholConcentration.touched && $validation.alcoholConcentration.valid) }">
-          <small class="text-muted">in percentage {{form.alcoholConcentration}}</small>
-        </fieldset>
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.latitude.touched && $validation.latitude.invalid), 'has-success': ($validation.latitude.touched && $validation.latitude.valid) }">
+              <label for="latitude">Latitude *</label>
+              <small v-for="error in $validation.latitude.errors" v-if="$validation.latitude.touched && $validation.latitude.invalid" class="text-danger pull-xs-right">{{error.message}}</small>
+              <div class="input-group">
+                <input type="text" v-model="form.latitude" class="form-control" id="latitude" placeholder="40.446111" v-validate:latitude="validation.latitude"
+                  v-bind:class="{ 'form-control-danger': $validation.latitude.invalid, 'form-control-success': ($validation.latitude.touched && $validation.latitude.valid) }">
+                <span class="input-group-btn">
+                  <button class="btn btn-success" type="button">DMS</button>
+                </span>
+              </div>
+              <small class="text-muted">in decimal degrees</small>
+            </fieldset>
+          </div>
 
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.alcoholComposition.touched && $validation.alcoholComposition.invalid), 'has-success': ($validation.alcoholComposition.touched && $validation.alcoholComposition.valid) }">
-          <label for="alcoholComposition">Alcohol Composition *</label>
-          <small v-for="error in $validation.alcoholComposition.errors" v-if="$validation.alcoholComposition.touched && $validation.alcoholComposition.invalid"
-            class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.alcoholComposition" class="form-control" id="alcoholComposition" placeholder="Ethanol" v-validate:alcohol-composition="validation.alcoholComposition"
-            v-bind:class="{ 'form-control-danger': $validation.alcoholComposition.invalid, 'form-control-success': ($validation.alcoholComposition.touched && $validation.alcoholComposition.valid) }">
-        </fieldset>
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.longitude.touched && $validation.longitude.invalid), 'has-success': ($validation.longitude.touched && $validation.longitude.valid) }">
+              <label for="longitude">Longitude *</label>
+              <small v-for="error in $validation.longitude.errors" v-if="$validation.longitude.touched && $validation.longitude.invalid"
+                class="text-danger pull-xs-right">{{error.message}}</small>
+              <div class="input-group">
+                <input type="text" v-model="form.longitude" lazy class="form-control" id="longitude" placeholder="79.982222" v-validate:longitude="validation.longitude"
+                  v-bind:class="{ 'form-control-danger': $validation.longitude.invalid, 'form-control-success': ($validation.longitude.touched && $validation.longitude.valid) }">
+                <span class="input-group-btn">
+                  <button class="btn btn-success" type="button">DMS</button>
+                </span>
+              </div>
+              <small class="text-muted">in decimal degrees</small>
+            </fieldset>
+          </div>
 
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.dateMeasured.touched && $validation.dateMeasured.invalid), 'has-success': ($validation.dateMeasured.touched && $validation.dateMeasured.valid) }">
-          <label for="dateMeasured">Date Measured *</label>
-          <small v-for="error in $validation.dateMeasured.errors" v-if="$validation.dateMeasured.touched && $validation.dateMeasured.invalid"
-            class="text-danger pull-xs-right">{{error.message}}</small>
-          <input type="text" v-model="form.dateMeasured" class="form-control" id="dateMeasured" placeholder="04/2016" v-validate:date-measured="validation.dateMeasured"
-            v-bind:class="{ 'form-control-danger': $validation.dateMeasured.invalid, 'form-control-success': ($validation.dateMeasured.touched && $validation.dateMeasured.valid) }">
-          <small class="text-muted">DD/MM/YYYY format</small>
-        </fieldset>
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.altitude.touched && $validation.altitude.invalid), 'has-success': ($validation.altitude.touched && $validation.altitude.valid) }">
+              <label for="altitude">Altitude</label>
+              <small v-for="error in $validation.altitude.errors" v-if="$validation.altitude.touched && $validation.altitude.invalid" class="text-danger pull-xs-right">{{error.message}}</small>
+              <input type="text" v-model="form.altitude" class="form-control" id="altitude" placeholder="1790" v-validate:altitude="validation.altitude"
+                v-bind:class="{ 'form-control-danger': $validation.altitude.invalid, 'form-control-success': ($validation.altitude.touched && $validation.altitude.valid) }">
+              <small class="text-muted">in meters</small>
+            </fieldset>
+          </div>
+        </div>
 
-        <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.additionalInfo.touched && $validation.additionalInfo.invalid), 'has-success': ($validation.additionalInfo.touched && $validation.additionalInfo.valid) }">
-          <label for="additionalInfo">Additional Info</label>
-          <small v-for="error in $validation.additionalInfo.errors" v-if="$validation.additionalInfo.touched && $validation.additionalInfo.invalid"
-            class="text-danger pull-xs-right">{{error.message}}</small>
-          <textarea v-model="form.additionalInfo" class="form-control" id="additionalInfo" rows="3" v-validate:additional-info="validation.additionalInfo"
-            v-bind:class="{ 'form-control-danger': $validation.additionalInfo.invalid, 'form-control-success': ($validation.additionalInfo.touched && $validation.additionalInfo.valid) }"></textarea>
-        </fieldset>
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group">
+              <div class="section-header bg-inverse">
+                <span>Field Data</span>
+              </div>
+            </fieldset>
+          </div>
 
-        <fieldset class="form-group">
-          <label for="labelSize">Label Size *</label>
-          <select v-model="form.labelSize" class="form-control" id="labelSize">
-        <option>Small</option>
-        <option>Medium</option>
-        <option>Large</option>
-        <option>Extra Large</option>
-      </select>
-        </fieldset>
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.fieldId.touched && $validation.fieldId.invalid), 'has-success': ($validation.fieldId.touched && $validation.fieldId.valid) }">
+              <label for="fieldId">Field ID</label>
+              <small v-for="error in $validation.fieldId.errors" v-if="$validation.fieldId.touched && $validation.fieldId.invalid" class="text-danger pull-xs-right">{{error.message}}</small>
+              <input type="text" v-model="form.fieldId" class="form-control" id="fieldId" placeholder="MW 6960" v-validate:field-id="validation.fieldId"
+                v-bind:class="{ 'form-control-danger': $validation.fieldId.invalid, 'form-control-success': ($validation.fieldId.touched && $validation.fieldId.valid) }">
+            </fieldset>
+          </div>
 
-        <fieldset class="form-group submit-block" :disabled="!$validation.valid">
-          <button v-on:click="saveEntry" type="button" class="btn btn-success btn-lg btn-block">Add Entry</button>
-        </fieldset>
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.collectedBy.touched && $validation.collectedBy.invalid), 'has-success': ($validation.collectedBy.touched && $validation.collectedBy.valid) }">
+              <label for="collectedBy">Collected By *</label>
+              <small v-for="error in $validation.collectedBy.errors" v-if="$validation.collectedBy.touched && $validation.collectedBy.invalid"
+                class="text-danger pull-xs-right">{{error.message}}</small>
+              <input type="text" v-model="form.collectedBy" class="form-control" id="collectedBy" placeholder="D. Gower, R. Hinde, S. Loader"
+                v-validate:collected-by="validation.collectedBy" v-bind:class="{ 'form-control-danger': $validation.collectedBy.invalid, 'form-control-success': ($validation.collectedBy.touched && $validation.collectedBy.valid) }">
+              <small class="text-muted">first initial, last name</small>
+            </fieldset>
+          </div>
+
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.collectionDate.touched && $validation.collectionDate.invalid), 'has-success': ($validation.collectionDate.touched && $validation.collectionDate.valid) }">
+              <label for="collectionDate">Collection Date</label>
+              <small v-for="error in $validation.collectionDate.errors" v-if="$validation.collectionDate.touched && $validation.collectionDate.invalid"
+                class="text-danger pull-xs-right">{{error.message}}</small>
+              <input type="text" v-model="form.collectionDate" class="form-control" id="collectionDate" placeholder="14/06/2003" v-validate:collection-date="validation.collectionDate"
+                v-bind:class="{ 'form-control-danger': $validation.collectionDate.invalid, 'form-control-success': ($validation.collectionDate.touched && $validation.collectionDate.valid) }">
+              <small class="text-muted">DD/MM/YYYY format</small>
+            </fieldset>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group">
+              <div class="section-header bg-inverse">
+                <span>Collection Data</span>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.alcoholConcentration.touched && $validation.alcoholConcentration.invalid), 'has-success': ($validation.alcoholConcentration.touched && $validation.alcoholConcentration.valid) }">
+              <label for="alcoholConcentration">Alcohol Concentration *</label>
+              <small v-for="error in $validation.alcoholConcentration.errors" v-if="$validation.alcoholConcentration.touched && $validation.alcoholConcentration.invalid"
+                class="text-danger pull-xs-right">{{error.message}}</small>
+              <input type="text" v-model="form.alcoholConcentration | percentageDisplay" class="form-control" id="alcoholConcentration"
+                placeholder="68.8" v-validate:alcohol-concentration="validation.alcoholConcentration" v-bind:class="{ 'form-control-danger': $validation.alcoholConcentration.invalid, 'form-control-success': ($validation.alcoholConcentration.touched && $validation.alcoholConcentration.valid) }">
+              <small class="text-muted">in percentage {{form.alcoholConcentration}}</small>
+            </fieldset>
+          </div>
+
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.alcoholComposition.touched && $validation.alcoholComposition.invalid), 'has-success': ($validation.alcoholComposition.touched && $validation.alcoholComposition.valid) }">
+              <label for="alcoholComposition">Alcohol Composition *</label>
+              <small v-for="error in $validation.alcoholComposition.errors" v-if="$validation.alcoholComposition.touched && $validation.alcoholComposition.invalid"
+                class="text-danger pull-xs-right">{{error.message}}</small>
+              <input type="text" v-model="form.alcoholComposition" class="form-control" id="alcoholComposition" placeholder="Ethanol" v-validate:alcohol-composition="validation.alcoholComposition"
+                v-bind:class="{ 'form-control-danger': $validation.alcoholComposition.invalid, 'form-control-success': ($validation.alcoholComposition.touched && $validation.alcoholComposition.valid) }">
+            </fieldset>
+          </div>
+
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.dateMeasured.touched && $validation.dateMeasured.invalid), 'has-success': ($validation.dateMeasured.touched && $validation.dateMeasured.valid) }">
+              <label for="dateMeasured">Date Measured *</label>
+              <small v-for="error in $validation.dateMeasured.errors" v-if="$validation.dateMeasured.touched && $validation.dateMeasured.invalid"
+                class="text-danger pull-xs-right">{{error.message}}</small>
+              <input type="text" v-model="form.dateMeasured" class="form-control" id="dateMeasured" placeholder="04/2016" v-validate:date-measured="validation.dateMeasured"
+                v-bind:class="{ 'form-control-danger': $validation.dateMeasured.invalid, 'form-control-success': ($validation.dateMeasured.touched && $validation.dateMeasured.valid) }">
+              <small class="text-muted">DD/MM/YYYY format</small>
+            </fieldset>
+          </div>
+
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.additionalInfo.touched && $validation.additionalInfo.invalid), 'has-success': ($validation.additionalInfo.touched && $validation.additionalInfo.valid) }">
+              <label for="additionalInfo">Additional Info</label>
+              <small v-for="error in $validation.additionalInfo.errors" v-if="$validation.additionalInfo.touched && $validation.additionalInfo.invalid"
+                class="text-danger pull-xs-right">{{error.message}}</small>
+              <textarea v-model="form.additionalInfo" class="form-control" id="additionalInfo" rows="3" v-validate:additional-info="validation.additionalInfo"
+                v-bind:class="{ 'form-control-danger': $validation.additionalInfo.invalid, 'form-control-success': ($validation.additionalInfo.touched && $validation.additionalInfo.valid) }"></textarea>
+            </fieldset>
+          </div>
+
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group">
+              <label for="labelSize">Label Size *</label>
+              <select v-model="form.labelSize" class="form-control" id="labelSize">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+                <option>Extra Large</option>
+              </select>
+            </fieldset>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <fieldset class="form-group submit-block" :disabled="!$validation.valid">
+              <button v-on:click="saveEntry" type="button" class="btn btn-success btn-lg btn-block">Add Entry</button>
+            </fieldset>
+          </div>
+        </div>
+
       </form>
     </validator>
     <pre>{{$validation | json}}</pre>
