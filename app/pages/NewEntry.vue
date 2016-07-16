@@ -69,7 +69,7 @@
 
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group" :disabled="!isTypeSpecimen" v-bind:class="{ 'has-danger': ($validation.type.touched && $validation.type.invalid), 'has-success': ($validation.type.touched && $validation.type.valid) }">
-              <label for="type">Type</label>
+              <label for="type">Type <span v-if="isTypeSpecimen">*</span></label>
               <small v-if="$validation.type.touched && $validation.type.invalid" class="text-danger pull-xs-right">{{$validation.type.errors[0].message}}</small>
               <input type="text" v-model="form.type" class="form-control text-uppercase" id="type" placeholder="Holotype" v-validate:type="validation.type"
                 v-bind:class="{ 'form-control-danger': $validation.type.invalid, 'form-control-success': ($validation.type.touched && $validation.type.valid) }">
@@ -78,7 +78,7 @@
 
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group" :disabled="!isTypeSpecimen" v-bind:class="{ 'has-danger': ($validation.describedBy.touched && $validation.describedBy.invalid), 'has-success': ($validation.describedBy.touched && $validation.describedBy.valid) }">
-              <label for="describedBy">Described By</label>
+              <label for="describedBy">Described By <span v-if="isTypeSpecimen">*</span></label>
               <small v-if="$validation.describedBy.touched && $validation.describedBy.invalid" class="text-danger pull-xs-right">{{$validation.describedBy.errors[0].message}}</small>
               <input type="text" v-model="form.describedBy" class="form-control" id="describedBy" placeholder="Loader, Gower, Hinde, Muller"
                 v-validate:described-by="validation.describedBy" v-bind:class="{ 'form-control-danger': $validation.describedBy.invalid, 'form-control-success': ($validation.describedBy.touched && $validation.describedBy.valid) }">
@@ -121,7 +121,7 @@
                 <input type="text" v-model="form.latitude" class="form-control" id="latitude" placeholder="40.446111" v-validate:latitude="validation.latitude"
                   v-bind:class="{ 'form-control-danger': $validation.latitude.invalid, 'form-control-success': ($validation.latitude.touched && $validation.latitude.valid) }">
                 <span class="input-group-btn">
-                  <button class="btn btn-success" type="button">DMS</button>
+                  <button v-on:click="showLatitudeModal" class="btn btn-success" type="button">DMS</button>
                 </span>
               </div>
               <small class="text-muted">in decimal degrees</small>
@@ -136,7 +136,7 @@
                 <input type="text" v-model="form.longitude" lazy class="form-control" id="longitude" placeholder="79.982222" v-validate:longitude="validation.longitude"
                   v-bind:class="{ 'form-control-danger': $validation.longitude.invalid, 'form-control-success': ($validation.longitude.touched && $validation.longitude.valid) }">
                 <span class="input-group-btn">
-                  <button class="btn btn-success" type="button">DMS</button>
+                  <button v-on:click="showLongitudeModal" class="btn btn-success" type="button">DMS</button>
                 </span>
               </div>
               <small class="text-muted">in decimal degrees</small>
@@ -270,6 +270,8 @@
     <prompt-modal target="import-modal" title-text="Data Import" body-text="This catalog number has specimen data associated with it on the NHM Data Portal. Would you like to import the data?"
       confirm-text="Import"></prompt-modal>
     <prompt-modal target="saved-modal" title-text="Entry Saved" body-text="Specimen entry saved to database."></prompt-modal>
+    <coordinate-modal target="latitude-modal" title-text="Latitude"></coordinate-modal>
+    <coordinate-modal target="longitude-modal" title-text="Longitude"></coordinate-modal>
   </div>
 </template>
 
@@ -281,10 +283,12 @@
   import DataPortal from '../services/dataportal.service'
   import coordinates from '../services/coordinates.service'
   import PromptModal from '../components/PromptModal.vue'
+  import CoordinateModal from '../components/CoordinateModal.vue'
 
   export default {
     components: {
-      PromptModal
+      PromptModal,
+      CoordinateModal
     },
     data() {
       return {
@@ -326,6 +330,12 @@
           }
         }
       },
+      showLatitudeModal() {
+        $('.latitude-modal').modal('show');
+      },
+      showLongitudeModal() {
+        $('.longitude-modal').modal('show');
+      },
       saveEntry() {
         var specimen = this.$resource('api/specimens{/id}');
         specimen.save(this.form).then((res) => {
@@ -339,22 +349,38 @@
     events: {
       'import-modal:confirm': function (target) {
         var record = DataPortal.store[this.form.catalogNumber];
-        this.form.family = record.family;
-        this.form.genus = record.genus;
-        this.form.species = record.specificEpithet;
+        this.form.family = record.family || '';
+        this.form.genus = record.genus || '';
+        this.form.species = record.specificEpithet || '';
         if (record.typeStatus) {
           this.isTypeSpecimen = true;
-          this.form.type = record.typeStatus;
-          this.form.describedBy = record.scientificNameAuthorship;
+          this.form.type = record.typeStatus || '';
+          this.form.describedBy = record.scientificNameAuthorship || '';
         }
-        this.form.country = record.country;
-        this.form.locality = record.locality;
-        this.form.latitude = record.verbatimLatitude;
-        this.form.longitude = record.verbatimLongitude;
-        // this.form.altitude = record.;
-        // this.form.fieldId = record.;
-        this.form.collectedBy = record.recordedBy;
-        //this.form.collectionDate = record.;
+        this.form.country = record.country || '';
+        this.form.locality = record.locality || '';
+        this.form.latitude = record.decimalLatitude || '';
+        this.form.longitude = record.decimalLongitude || '';
+        this.form.collectedBy = record.recordedBy || '';
+        this.$nextTick(function () {
+          Bloodhound.update();
+          this.$validate('family', true);
+          this.$validate('genus', true);
+          this.$validate('species', true);
+          this.$validate('type', true);
+          this.$validate('describedBy', true);
+          this.$validate('country', true);
+          this.$validate('locality', true);
+          if (this.form.latitude.length > 0) {
+            this.$validate('latitude', true);
+          }
+          if (this.form.longitude.length > 0) {
+            this.$validate('longitude', true);
+          }
+          if (this.form.collectedBy.length > 0) {
+            this.$validate('collectedBy', true);
+          }
+        });
       }
     }
   }
