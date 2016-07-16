@@ -1,6 +1,7 @@
 import cvars from './cvars.service'
 
 function isEmpty(val) {
+  val = val.trim();
   return (val.length === 0);
 }
 
@@ -8,8 +9,18 @@ export default {
   required: {
     message: cvars.ERROR_REQUIRED_FIELD_MSG,
     check: function (val) {
-      if (isEmpty(val)) {
-        return false;
+      return !isEmpty(val);
+    }
+  },
+  typeSpecimen: {
+    message: cvars.ERROR_REQUIRED_FIELD_MSG,
+    check: function (val) {
+      if (this.vm.isTypeSpecimen) {
+        return !isEmpty(val);
+      }
+      else {
+        this.touched = false;
+        return true;
       }
     }
   },
