@@ -54,11 +54,11 @@ export default {
   },
   updateSpecies(value) {
     datasets.species.clear();
-    if (family.indexOf(value) > -1) {
+    if (genus.indexOf(value) > -1) {
       datasets.species.local = speciesMap[value];
     }
     else {
-      datasets.species.local = genus;
+      datasets.species.local = species;
     }
     datasets.species.initialize(true);
   },
