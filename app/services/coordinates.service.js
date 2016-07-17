@@ -16,8 +16,5 @@ export default {
     var seconds = (0 | float * 60 % 1 * 6000) / 100;
     var direction = float < 0 ? longitude ? 'W' : 'S' : longitude ? 'E' : 'N';
     return this.formatDMS(degrees, minutes, seconds, direction);
-  },
-  formatDMS(degrees, minutes, seconds, direction) {
-    return degrees + '° ' + minutes + "' " + seconds + '" ' + direction;
   }
 }

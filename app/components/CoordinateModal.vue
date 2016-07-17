@@ -11,38 +11,52 @@
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col-xs-12 col-md-4">
+
+              <div class="col-xs-12 col-md-3">
                 <div class="form-group">
-                  <label for="formGroupExampleInput">Degrees</label>
+                  <label for="degrees">Degrees</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" aria-label="Degrees">
+                    <input id="degrees" type="text" v-model="degrees" class="form-control" aria-label="Degrees">
                     <span class="input-group-addon">°</span>
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-md-4">
+
+              <div class="col-xs-12 col-md-3">
                 <div class="form-group">
-                  <label for="formGroupExampleInput">Minutes</label>
+                  <label for="minutes">Minutes</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" aria-label="Minutes">
+                    <input id="minutes" type="text" v-model="minutes" class="form-control" aria-label="Minutes">
                     <span class="input-group-addon">'</span>
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-md-4">
+
+              <div class="col-xs-12 col-md-3">
                 <div class="form-group">
-                  <label for="formGroupExampleInput">Seconds</label>
+                  <label for="seconds">Seconds</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" aria-label="Seconds">
+                    <input id="seconds" type="text" v-model="seconds" class="form-control" aria-label="Seconds">
                     <span class="input-group-addon">"</span>
                   </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <select id="hemisphere" v-model="hemisphere" class="form-control" aria-label="hemisphere">
+                    <option v-if="isLatitude">N</option>
+                    <option v-if="isLatitude">S</option>
+                    <option v-if="!isLatitude">E</option>
+                    <option v-if="!isLatitude">W</option>
+                  </select>
                 </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" v-on:click="cancel" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-success" v-on:click="confirm" data-dismiss="modal">Submit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-success" v-on:click="submit" data-dismiss="modal">Submit</button>
           </div>
         </div>
       </div>
@@ -51,20 +65,39 @@
 </template>
 
 <script>
+  import coordinates from '../services/coordinates.service'
   export default {
     props: [
       'target',
-      'titleText'
+      'titleText',
+      'isLatitude',
+      'fieldVal'
     ],
+    data() {
+      var hemisphere = (this.isLatitude) ? 'N' : 'E';
+      return {
+        degrees: '',
+        minutes: '',
+        seconds: '',
+        hemisphere: hemisphere
+      }
+    },
     methods: {
-      confirm() {
-        this.$dispatch(this.target + ':confirm');
-      },
-      cancel() {
-        this.$dispatch(this.target + ':cancel');
+      submit() {
+        var decimal = coordinates.convertDMSToDD(this.degrees, this.minutes, this.seconds, this.hemisphere);
+        this.degrees = '';
+        this.minutes = '';
+        this.seconds = '';
+        this.hemisphere = (this.isLatitude) ? 'N' : 'E';
+        this.$dispatch(this.target + ':submit', decimal);
       }
     }
   }
 </script>
 
-<style></style>
+<style scoped>
+  #hemisphere {
+    margin-top: 2rem;
+    height: 38px;
+  }
+</style>

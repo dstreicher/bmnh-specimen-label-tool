@@ -270,8 +270,8 @@
     <prompt-modal target="import-modal" title-text="Data Import" body-text="This catalog number has specimen data associated with it on the NHM Data Portal. Would you like to import the data?"
       confirm-text="Import"></prompt-modal>
     <prompt-modal target="saved-modal" title-text="Entry Saved" body-text="Specimen entry saved to database."></prompt-modal>
-    <coordinate-modal target="latitude-modal" title-text="Latitude"></coordinate-modal>
-    <coordinate-modal target="longitude-modal" title-text="Longitude"></coordinate-modal>
+    <coordinate-modal target="latitude-modal" title-text="Latitude" :field-val="form.latitude" :is-latitude="true"></coordinate-modal>
+    <coordinate-modal target="longitude-modal" title-text="Longitude" :field-val="form.longitude" :is-latitude="false"></coordinate-modal>
   </div>
 </template>
 
@@ -281,7 +281,6 @@
   import validators from '../services/validators.service'
   import Bloodhound from '../services/bloodhound.service'
   import DataPortal from '../services/dataportal.service'
-  import coordinates from '../services/coordinates.service'
   import PromptModal from '../components/PromptModal.vue'
   import CoordinateModal from '../components/CoordinateModal.vue'
 
@@ -355,7 +354,7 @@
       }
     },
     events: {
-      'import-modal:confirm': function (target) {
+      'import-modal:confirm': function () {
         var record = DataPortal.store[this.form.catalogNumber];
         this.form.family = record.family || '';
         this.form.genus = record.genus || '';
@@ -389,6 +388,14 @@
             this.$validate('collectedBy', true);
           }
         });
+      },
+      'latitude-modal:submit': function (val) {
+        this.form.latitude = val;
+        this.$validate('latitude', true);
+      },
+      'longitude-modal:submit': function (val) {
+        this.form.longitude = val;
+        this.$validate('longitude', true);
       }
     }
   }
