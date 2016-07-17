@@ -44,7 +44,7 @@
             <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.family.touched && $validation.family.invalid), 'has-success': ($validation.family.touched && $validation.family.valid) }">
               <label for="family">Family *</label>
               <small v-if="$validation.family.touched && $validation.family.invalid" class="text-danger pull-xs-right">{{$validation.family.errors[0].message}}</small>
-              <input type="text" v-model="form.family" class="typeahead form-control" id="family" placeholder="Brevicepitidae" v-validate:family="validation.family"
+              <input type="text" v-model="form.family" v-on:blur="updateBloodhound('genus')" class="typeahead form-control" id="family" placeholder="Brevicepitidae" v-validate:family="validation.family"
                 v-bind:class="{ 'form-control-danger': $validation.family.invalid, 'form-control-success': ($validation.family.touched && $validation.family.valid) }">
             </fieldset>
           </div>
@@ -53,7 +53,7 @@
             <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.genus.touched && $validation.genus.invalid), 'has-success': ($validation.genus.touched && $validation.genus.valid) }">
               <label for="genus">Genus *</label>
               <small v-if="$validation.genus.touched && $validation.genus.invalid" class="text-danger pull-xs-right">{{$validation.genus.errors[0].message}}</small>
-              <input type="text" v-model="form.genus" class="form-control" id="genus" placeholder="Callulina" v-validate:genus="validation.genus"
+              <input type="text" v-model="form.genus" v-on:blur="updateBloodhound('species')" class="form-control" id="genus" placeholder="Callulina" v-validate:genus="validation.genus"
                 v-bind:class="{ 'form-control-danger': $validation.genus.invalid, 'form-control-success': ($validation.genus.touched && $validation.genus.valid) }">
             </fieldset>
           </div>
@@ -328,6 +328,14 @@
               console.log('failure!');
             });
           }
+        }
+      },
+      updateBloodhound(dataset) {
+        if (dataset === 'genus') {
+          Bloodhound.updateGenus(this.form.family);
+        }
+        else if (dataset === 'species') {
+          Bloodhound.updateSpecies(this.form.genus);
         }
       },
       showLatitudeModal() {
