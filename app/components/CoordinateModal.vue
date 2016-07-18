@@ -65,6 +65,7 @@
 </template>
 
 <script>
+  import cvars from '../services/cvars.service'
   import coordinates from '../services/coordinates.service'
   export default {
     props: [
@@ -84,12 +85,15 @@
     },
     methods: {
       submit() {
-        var decimal = coordinates.convertDMSToDD(this.degrees, this.minutes, this.seconds, this.hemisphere);
+        var degrees = this.degrees || 0;
+        var minutes = this.minutes || 0;
+        var seconds = this.seconds || 0;
+        var decimal = coordinates.convertDMSToDD(degrees, minutes, seconds, this.hemisphere);
         this.degrees = '';
         this.minutes = '';
         this.seconds = '';
         this.hemisphere = (this.isLatitude) ? 'N' : 'E';
-        this.$dispatch(this.target + ':submit', decimal);
+        this.$dispatch(this.target + ':submit', decimal.toFixed(cvars.DEFAULT_GPS_DECIMAL_PLACES));
       }
     }
   }

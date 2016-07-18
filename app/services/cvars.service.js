@@ -4,6 +4,7 @@ const RESOURCE_URL = API_URL + '?resource_id=05ff2255-c38a-40c9-b657-4ccb55ab2fe
 export default {
   API_URL: API_URL,
   RESOURCE_URL: RESOURCE_URL,
+  DEFAULT_GPS_DECIMAL_PLACES: 4,
   EMU_SPECIMENS_SUB_DEPARTMENT_REPTILES_AMPHIBIANS: 'Reptiles & Amphibians',
   ERROR_REQUIRED_FIELD_MSG: 'This field is required.',
   ERROR_ADDITONAL_INFO_MAX_LENGTH: 'Text character limit reached.',
