@@ -40,5 +40,8 @@ export default {
     alcoholConcentration: ['percentage', 'required'],
     dateMeasured: ['date', 'required'],
     additionalInfo: []
+  },
+  getDefaults() {
+    return $.extend({}, this.defaults);
   }
 }

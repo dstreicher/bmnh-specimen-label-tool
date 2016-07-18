@@ -183,7 +183,7 @@
 
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.collectionDate.touched && $validation.collectionDate.invalid), 'has-success': ($validation.collectionDate.touched && $validation.collectionDate.valid) }">
-              <label for="collectionDate">Collection Date</label>
+              <label for="collectionDate">Collection Date *</label>
               <small v-if="$validation.collectionDate.touched && $validation.collectionDate.invalid" class="text-danger pull-xs-right">{{$validation.collectionDate.errors[0].message}}</small>
               <input type="text" v-model="form.collectionDate" class="form-control" id="collectionDate" v-validate:collection-date="validation.collectionDate"
                 v-bind:class="{ 'form-control-danger': $validation.collectionDate.invalid, 'form-control-success': ($validation.collectionDate.touched && $validation.collectionDate.valid) }">
@@ -291,7 +291,7 @@
     },
     data() {
       return {
-        form: entryModel.defaults,
+        form: entryModel.getDefaults(),
         validation: entryModel.validation,
         isTypeSpecimen: false
       };
@@ -346,7 +346,8 @@
       saveEntry() {
         var specimen = this.$resource('api/specimens{/id}');
         specimen.save(this.form).then((res) => {
-          this.form = Vue.util.extend({}, entryModel.defaults);
+          this.form = entryModel.getDefaults();
+          this.$resetValidation();
           $('.saved-modal').modal('show');
         }, (res) => {
           console.log('failure!');
@@ -371,6 +372,8 @@
         this.form.collectedBy = record.recordedBy || '';
         this.$nextTick(function () {
           Bloodhound.update();
+          Bloodhound.updateGenus(this.form.family);
+          Bloodhound.updateSpecies(this.form.genus);
           this.$validate('family', true);
           this.$validate('genus', true);
           this.$validate('species', true);
@@ -378,10 +381,10 @@
           this.$validate('describedBy', true);
           this.$validate('country', true);
           this.$validate('locality', true);
-          if (this.form.latitude.length > 0) {
+          if (this.form.latitude.toString().length > 0) {
             this.$validate('latitude', true);
           }
-          if (this.form.longitude.length > 0) {
+          if (this.form.longitude.toString().length > 0) {
             this.$validate('longitude', true);
           }
           if (this.form.collectedBy.length > 0) {

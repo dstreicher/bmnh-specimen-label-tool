@@ -23,7 +23,7 @@
         <span class="nhm-label">The Natural History Museum (BMNH) - Amphibian Collection</span>
       </div>
       <div class="data-matrix">
-        <img class="barcode" src="{{specimen.dataMatrixImage}}">
+        <img class="barcode" v-bind:src="specimen.dataMatrixImage">
       </div>
       <div class="type-label">
         <span class="type-text">{{specimen.type}}</span>
