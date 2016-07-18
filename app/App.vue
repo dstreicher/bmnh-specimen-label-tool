@@ -25,6 +25,11 @@
 </script>
 
 <style>
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+
   body {
     padding-top: 6rem;
     background-color: #f7f7f9;
