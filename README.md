@@ -15,10 +15,6 @@ vagrant up
 
 # launch bash shell
 vagrant ssh
-cd /vagrant
-
-# install dependencies
-npm install
 
 # start server
 npm start
