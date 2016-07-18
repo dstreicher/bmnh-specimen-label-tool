@@ -11,7 +11,7 @@
       <div class="location-row">
         <span class="country-locality">{{specimen.country}}: {{specimen.locality}}</span>
         <span class="country-locality">South Forest Reserve</span>
-        <span class="country-locality">{{specimen.latitude}}, {{specimen.longitude}}, {{specimen.altitude}} m</span>
+        <span class="country-locality">{{specimen.latitude}}°, {{specimen.longitude}}°, {{specimen.altitude}} m</span>
       </div>
       <div class="collection-row">
         <span class="collection-info">{{specimen.fieldID}}</span>

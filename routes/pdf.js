@@ -3,6 +3,7 @@ var path = require('path');
 var express = require('express');
 var pdf = require('html-pdf');
 var Handlebars = require('handlebars');
+var config = require('../server.config');
 var router = express.Router();
 
 router.route('/')
@@ -14,7 +15,7 @@ router.route('/')
       }
       var template = Handlebars.compile(file);
       var content = template(req.body);
-      pdf.create(content, { format: req.body.paperSize }).toFile('./dist/pdf/specimen_labels.pdf', function (err) {
+      pdf.create(content, { format: req.body.paperSize, phantomPath: config.PHANTOM_PATH }).toFile('./dist/pdf/specimen_labels.pdf', function (err) {
         if (err) {
           return console.log(err);
         }
