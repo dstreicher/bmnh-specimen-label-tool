@@ -31,7 +31,6 @@
   export default {
     ready() {
       $(".navbar-nav .nav-link").click(function (event) {
-        console.log('clicked!');
         var toggle = $(".navbar-toggler").is(":visible");
         if (toggle) {
           $("#collapsing-navbar").collapse('hide');

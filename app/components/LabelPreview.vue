@@ -10,7 +10,6 @@
       </div>
       <div class="location-row">
         <span class="country-locality">{{specimen.country}}: {{specimen.locality}}</span>
-        <span class="country-locality">South Forest Reserve</span>
         <span class="country-locality">{{specimen.latitude}}°, {{specimen.longitude}}°, {{specimen.altitude}} m</span>
       </div>
       <div class="collection-row">
@@ -92,6 +91,7 @@
   .location-row {
     border-top: 0.15rem solid #000;
     padding: 0.5rem 0.5rem 0;
+    min-height: 5.5rem;
   }
 
   .location-row .country-locality {

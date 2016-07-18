@@ -11,7 +11,7 @@
       <div class="col-xs-12 text-xs-center text-md-right">
         <div class="btn-group" data-toggle="buttons">
           <label class="btn btn-success active">
-            <input type="radio" class="bg-success" name="options" id="option1" autocomplete="off" checked> Printed <span class="label label-pill label-success">0</span>
+            <input type="radio" class="bg-success" name="options" id="option1" autocomplete="off" checked> Exported <span class="label label-pill label-success">0</span>
           </label>
           <label class="btn btn-warning">
             <input type="radio" name="options" id="option2" autocomplete="off"> To Do <span class="label label-pill label-warning">0</span>
@@ -37,8 +37,8 @@
                 <span class="subtitle">{{specimen.genus + ' ' + specimen.species}}</span>
               </div>
               <div class="col-xs-4 text-xs-right">
-                <button class="btn btn-warning btn-sm" v-on:click.stop="editEntry(1)">Edit</button>
-                <button class="btn btn-success btn-sm" type="button" data-toggle="collapse" data-target="#{{specimen._id}}-collapse"
+                <button class="btn btn-warning btn-sm" v-on:click.stop="editEntry(specimen._id)">Edit</button>
+                <button class="btn btn-success btn-sm" v-on:click.stop="toggleCollapse(specimen._id)" type="button" data-toggle="collapse" data-target="#{{specimen._id}}-collapse"
                   aria-expanded="false" aria-controls="collapseExample">
                   Preview
                 </button>
@@ -101,6 +101,9 @@
       togglePrintOption(index) {
         this.specimens[index].shouldPrint = !this.specimens[index].shouldPrint;
       },
+      toggleCollapse(id) {
+        $('#' + id + '-collapse').collapse('toggle');
+      },
       editEntry(id) {
         console.log('edit entry ' + id);
       },
@@ -153,5 +156,9 @@
   .list-group-item .subtitle {
     font-weight: 500;
     font-style: italic;
+  }
+
+  .c-input>input:checked~.c-indicator {
+    background-color: #5cb85c;
   }
 </style>
