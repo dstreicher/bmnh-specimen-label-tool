@@ -20,7 +20,8 @@ export default {
     alcoholComposition: 'Ethanol',
     dateMeasured: '',
     additionalInfo: '',
-    labelSize: 'Small'
+    labelSize: 'Small',
+    hasBeenExported: true,
   },
   validation: {
     catalogNumber: ['required'],

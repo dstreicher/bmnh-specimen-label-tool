@@ -7,6 +7,7 @@
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group">
               <div class="col-xs-12">
+                <h5 v-if="isExistingEntry">Entry {{form._id}}</h5>
                 <small class="text-muted">* indicates required field</small>
               </div>
             </fieldset>
@@ -253,7 +254,7 @@
         <div class="row">
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group submit-block" :disabled="!$validation.valid">
-              <button v-on:click="saveEntry" type="button" class="btn btn-success btn-lg btn-block">Add Entry</button>
+              <button v-on:click="saveEntry" type="button" class="btn btn-success btn-lg btn-block"><span v-if="isExistingEntry">Update</span><span v-else>Add</span> Entry</button>
             </fieldset>
           </div>
         </div>
@@ -286,7 +287,8 @@
       return {
         form: entryModel.getDefaults(),
         validation: entryModel.validation,
-        isTypeSpecimen: false
+        isTypeSpecimen: false,
+        isExistingEntry: false
       };
     },
     route: {
@@ -295,10 +297,20 @@
           var specimen = this.$resource('api/specimens{/id}');
           specimen.get({id: this.$route.params.id}).then((res) => {
             this.form = res.data;
+            this.isExistingEntry = true;
+            if (res.data.type) {
+              this.isTypeSpecimen = true;
+            }
             this.$validate(true);
           }, (res) => {
             console.log('failure!');
           });
+        }
+        else {
+          this.form = entryModel.getDefaults();
+          this.isExistingEntry = false;
+          this.isTypeSpecimen = false;
+          this.$resetValidation();
         }
       }
     },

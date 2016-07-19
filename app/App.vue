@@ -35,6 +35,12 @@
     background-color: #f7f7f9;
   }
 
+  .btn-inverse {
+    border-color: #373a3c;
+    background-color: #373a3c;
+    color: #fff;
+  }
+
   .content.container {
     padding-bottom: 100px;
   }

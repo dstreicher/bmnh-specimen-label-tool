@@ -4,10 +4,10 @@
       <div class="col-xs-12 text-xs-center text-md-right">
         <div class="btn-group" data-toggle="buttons">
           <label class="btn btn-success active">
-            <input type="radio" class="bg-success" name="options" id="option1" autocomplete="off" checked> Exported <span class="label label-pill label-success">0</span>
+            <input type="radio" class="bg-success" name="options" id="option1" autocomplete="off" checked> Done <span class="label label-pill label-success">{{doneTotal}}</span>
           </label>
           <label class="btn btn-warning">
-            <input type="radio" name="options" id="option2" autocomplete="off"> To Do <span class="label label-pill label-warning">0</span>
+            <input type="radio" name="options" id="option2" autocomplete="off"> To Do <span class="label label-pill label-warning">{{toDoTotal}}</span>
           </label>
           <label class="btn btn-secondary">
             <input type="radio" name="options" id="option3" autocomplete="off"> All
@@ -28,6 +28,8 @@
                 </label>
                 <span class="title">{{specimen.catalogNumber}}</span>
                 <span class="subtitle">{{specimen.genus + ' ' + specimen.species}}</span>
+                <span v-if="specimen.hasBeenExported" class="label label-pill label-success">Done</span>
+                <span v-else class="label label-pill label-warning">To Do</span>
               </div>
               <div class="col-xs-4 text-xs-right">
                 <button class="btn btn-warning btn-sm" v-link="{name: 'entry', params: { id: specimen._id }}">Edit</button>
@@ -58,7 +60,7 @@
         </div>
       </div>
       <div class="col-xs-12">
-        <button type="button" v-on:click="exportPDF" class="btn btn-success btn-lg btn-block">Export</button>
+        <button type="button" v-on:click="exportPDF" :disabled="!$validation.valid" class="btn btn-success btn-lg btn-block">Export</button>
       </div>
     </div>
     <download-modal></download-modal>
@@ -76,7 +78,9 @@
     data() {
       return {
         paperSize: 'A4',
-        specimens: {}
+        specimens: {},
+        doneTotal: 0,
+        toDoTotal: 0
       }
     },
     created() {
@@ -86,6 +90,7 @@
           res.data[i].shouldPrint = false;
         }
         this.specimens = res.data;
+        this.updateTotals();
       }, (res) => {
         console.log('failure!');
       });
@@ -96,6 +101,16 @@
       },
       toggleCollapse(id) {
         $('#' + id + '-collapse').collapse('toggle');
+      },
+      updateTotals() {
+        var done = 0;
+        for (var i = 0; i < this.specimens.length; i++) {
+          if (this.specimens[i].hasBeenExported) {
+            done++;
+          }
+        }
+        this.doneTotal = done;
+        this.toDoTotal = this.specimens.length - done;
       },
       exportPDF() {
         var specimensToPrint = [];
