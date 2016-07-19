@@ -363,8 +363,11 @@
       },
       saveEntry() {
         var specimen = this.$resource('api/specimens{/id}');
-        specimen.save(this.form).then((res) => {
+        var options = (this.form._id) ? {id: this.form._id} : {};
+        specimen.save(options, this.form).then((res) => {
           this.form = entryModel.getDefaults();
+          this.isExistingEntry = false;
+          this.isTypeSpecimen = false;
           this.$resetValidation();
           $('.saved-modal').modal('show');
         }, (res) => {

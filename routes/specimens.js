@@ -15,11 +15,11 @@ router.route('/')
   })
   .post(function (req, res, next) {
     var entry = new Specimen(req.body);
-    entry.save(function (err, entry) {
+    entry.save(function (err, specimen) {
       if (err) {
         return next(err);
       }
-      return res.status(200).json(entry);
+      return res.status(200).json(specimen);
     });
   });
 
@@ -31,6 +31,14 @@ router.route('/:id')
       }
       return res.status(200).json(specimen);
     });
+  })
+  .post(function (req, res, next) {
+    Specimen.update({ _id: req.params.id }, req.body, function (err, specimen) {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).json(specimen);
+    })
   });
 
 module.exports = router;
