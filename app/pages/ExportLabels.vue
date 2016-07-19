@@ -1,12 +1,5 @@
 <template>
   <div>
-    <!--<div class="row">
-      <div class="col-xs-12 col-md-6">
-        <button v-on:click="downloadPDF" type="button" class="btn btn-success">Download</button>
-        <button onclick='window.open("dist/pdf/specimen_labels.pdf");' type="button" class="btn btn-success">Open PDF</button>
-      </div>
-    </div>-->
-
     <div class="row">
       <div class="col-xs-12 text-xs-center text-md-right">
         <div class="btn-group" data-toggle="buttons">
@@ -37,7 +30,7 @@
                 <span class="subtitle">{{specimen.genus + ' ' + specimen.species}}</span>
               </div>
               <div class="col-xs-4 text-xs-right">
-                <button class="btn btn-warning btn-sm" v-on:click.stop="editEntry(specimen._id)">Edit</button>
+                <button class="btn btn-warning btn-sm" v-link="{name: 'entry', params: { id: specimen._id }}">Edit</button>
                 <button class="btn btn-success btn-sm" v-on:click.stop="toggleCollapse(specimen._id)" type="button" data-toggle="collapse" data-target="#{{specimen._id}}-collapse"
                   aria-expanded="false" aria-controls="collapseExample">
                   Preview
@@ -52,7 +45,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row m-y-2">
       <div class="col-xs-12">
         <div class="form-group">
           <label for="paperSize">Paper Format</label>
@@ -103,9 +96,6 @@
       },
       toggleCollapse(id) {
         $('#' + id + '-collapse').collapse('toggle');
-      },
-      editEntry(id) {
-        console.log('edit entry ' + id);
       },
       exportPDF() {
         var specimensToPrint = [];

@@ -23,9 +23,9 @@ router.route('/')
     });
   });
 
-router.route('/:specimen_id')
+router.route('/:id')
   .get(function (req, res, next) {
-    Specimen.findOne({ catalogNumber: req.params.specimen_id }, function (err, specimen) {
+    Specimen.findOne({ _id: req.params.id }, function (err, specimen) {
       if (err) {
         return next(err);
       }

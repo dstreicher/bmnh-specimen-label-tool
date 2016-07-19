@@ -6,7 +6,7 @@
         <div class="collapse navbar-toggleable-xs" id="collapsing-navbar">
           <a class="navbar-brand">BMNH Labels</a>
           <div class="nav navbar-nav">
-            <a v-link="{ path: '/new-entry', activeClass: 'active' }" class="nav-item nav-link">New Entry</a>
+            <a v-link="{ path: '/entry/new', activeClass: 'active' }" class="nav-item nav-link">New Entry</a>
             <a v-link="{ path: '/export-labels', activeClass: 'active' }" class="nav-item nav-link">Export Labels</a>
             <a v-link="{ path: '/export-csv', activeClass: 'active' }" class="nav-item nav-link ">Export CSV</a>
           </div>

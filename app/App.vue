@@ -1,7 +1,7 @@
 <template>
   <div>
     <header-bar></header-bar>
-    <div class="container">
+    <div class="content container">
       <router-view transition="fade"></router-view>
     </div>
     <footer-bar></footer-bar>
@@ -33,6 +33,10 @@
   body {
     padding-top: 6rem;
     background-color: #f7f7f9;
+  }
+
+  .content.container {
+    padding-bottom: 100px;
   }
 
   .fade-transition {
