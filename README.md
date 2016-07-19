@@ -31,6 +31,19 @@ npm run dev
 
 ``` bash
 # provision environment
+sudo apt-get update
+sudo apt-get install git
+git clone https://github.com/dstreicher/bmnh-specimen-label-tool.git
+cd bmnh-specimen-label-tool/
+chmod +x scripts/provision_server.sh
+sudo ./scripts/provision_server.sh
 
+#install app dependencies
+sudo npm install
+sudo npm install phantomjs-prebuilt #temp fix
+
+#setup pm2 and start server
+sudo npm install pm2@latest -g
+pm2 start server.js
 
 ```
