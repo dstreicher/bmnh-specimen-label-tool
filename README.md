@@ -7,7 +7,7 @@
 * Oracle VM VirtualBox (https://www.virtualbox.org/)
 * Vagrant (https://www.vagrantup.com/)
 
-## Build Setup
+## Development Setup
 
 ``` bash
 # provision environment
@@ -20,9 +20,17 @@ vagrant ssh
 npm start
 ```
 
-## Development
+## Webpack Hotreload (front-end only)
 
 ``` bash
 # serve with hot reload at localhost:8080
 npm run dev
+```
+
+## Production Setup (Ubuntu 14.04 LTS)
+
+``` bash
+# provision environment
+
+
 ```

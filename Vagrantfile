@@ -13,7 +13,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 8080, host: APP_PORT
   config.vm.network "forwarded_port", guest: 27017, host: 27017
 
-  config.vm.provision :shell, :path => "server.provision.sh"
+  config.vm.provision :shell, :path => "scripts/provision_server.sh"
+  config.vm.provision :shell, :path => "scripts/provision_vagrant.sh"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = VM_NAME

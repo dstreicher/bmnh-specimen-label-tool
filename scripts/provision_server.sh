@@ -23,15 +23,5 @@ sudo tar xjf phantomjs-1.9.7-linux-x86_64.tar.bz2
 sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/share/phantomjs
 sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
 sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
-echo "export PHANTOM_PATH='/usr/bin/phantomjs'" >> /home/vagrant/.bashrc
-
-#setup mongodb
-sudo sed -i 's/bind_ip = 127.0.0.1/# bind_ip = 127.0.0.1/' /etc/mongod.conf
-sudo service mongod restart
-
-#install node modules
-cd /vagrant
-sudo npm install
-
-#setup bash profile
-echo 'cd /vagrant' >> /home/vagrant/.bashrc
+echo "export PHANTOM_PATH='/usr/bin/phantomjs'" >> ~/.profile
+source ~/.bashrc
