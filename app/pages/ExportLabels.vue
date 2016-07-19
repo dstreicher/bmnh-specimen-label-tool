@@ -3,13 +3,13 @@
     <div class="row">
       <div class="col-xs-12 text-xs-center text-md-right">
         <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-success active">
-            <input type="radio" class="bg-success" name="options" id="option1" autocomplete="off" checked> Done <span class="label label-pill label-success">{{doneTotal}}</span>
+          <label class="btn btn-success" v-on:click="updateFilter('Done')">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Done <span class="label label-pill label-success">{{doneTotal}}</span>
           </label>
-          <label class="btn btn-warning">
+          <label class="btn btn-warning" v-on:click="updateFilter('To Do')">
             <input type="radio" name="options" id="option2" autocomplete="off"> To Do <span class="label label-pill label-warning">{{toDoTotal}}</span>
           </label>
-          <label class="btn btn-secondary">
+          <label class="btn btn-secondary active" v-on:click="updateFilter()">
             <input type="radio" name="options" id="option3" autocomplete="off"> All
           </label>
         </div>
@@ -70,6 +70,7 @@
 <script>
   import LabelPreview from '../components/LabelPreview.vue'
   import DownloadModal from '../components/DownloadModal.vue'
+  var _specimens = [];
   export default {
     components: {
       LabelPreview,
@@ -80,7 +81,8 @@
         paperSize: 'A4',
         specimens: {},
         doneTotal: 0,
-        toDoTotal: 0
+        toDoTotal: 0,
+        currentFilter: ''
       }
     },
     created() {
@@ -89,6 +91,7 @@
         for (var i = 0; i < res.data.length; i++) {
           res.data[i].shouldPrint = false;
         }
+        _specimens = res.data;
         this.specimens = res.data;
         this.updateTotals();
       }, (res) => {
@@ -102,21 +105,38 @@
       toggleCollapse(id) {
         $('#' + id + '-collapse').collapse('toggle');
       },
+      updateFilter(filter) {
+        this.currentFilter = filter;
+        if (filter === 'Done') {
+          this.specimens = _specimens.filter(function (specimen) {
+            return specimen.hasBeenExported;
+          });
+        }
+        else if (filter === 'To Do') {
+          this.specimens = _specimens.filter(function (specimen) {
+            return !specimen.hasBeenExported;
+          });
+        }
+        else {
+          this.specimens = _specimens;
+        }
+      },
       updateTotals() {
         var done = 0;
-        for (var i = 0; i < this.specimens.length; i++) {
-          if (this.specimens[i].hasBeenExported) {
+        for (var i = 0; i < _specimens.length; i++) {
+          if (_specimens[i].hasBeenExported) {
             done++;
           }
         }
         this.doneTotal = done;
-        this.toDoTotal = this.specimens.length - done;
+        this.toDoTotal = _specimens.length - done;
       },
       exportPDF() {
         var specimensToPrint = [];
         var specimensToUpdate = [];
         for (var i = 0; i < this.specimens.length; i++) {
           if (this.specimens[i].shouldPrint) {
+            this.specimens[i].shouldPrint = !this.specimens[i].shouldPrint;
             this.specimens[i].hasBeenExported = true;
             var specimen = $.extend({}, this.specimens[i]);
             this.specimens.$set(i, specimen);
@@ -124,9 +144,10 @@
             specimensToPrint.push(this.specimens[i]);
           }
         }
+        this.updateTotals();
+        this.updateFilter(this.currentFilter);
         this.$http.post('/api/specimens/exported', JSON.stringify(specimensToUpdate));
         this.$http.post('/api/pdf', { paperSize: this.paperSize, specimens: specimensToPrint }).then((res) => {
-          this.updateTotals();
           $('.download-modal').modal('show');
         }, (res) => {
           console.log(res);
