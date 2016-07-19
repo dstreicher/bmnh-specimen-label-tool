@@ -21,7 +21,8 @@ var schema = new mongoose.Schema({
   dateMeasured: String,
   additionalInfo: String,
   labelSize: String,
-  dataMatrixImage: String
+  dataMatrixImage: String,
+  hasBeenExported: Boolean
 });
 
 schema.pre('save', function (next) {

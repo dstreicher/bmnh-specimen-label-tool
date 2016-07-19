@@ -114,12 +114,19 @@
       },
       exportPDF() {
         var specimensToPrint = [];
+        var specimensToUpdate = [];
         for (var i = 0; i < this.specimens.length; i++) {
           if (this.specimens[i].shouldPrint) {
+            this.specimens[i].hasBeenExported = true;
+            var specimen = $.extend({}, this.specimens[i]);
+            this.specimens.$set(i, specimen);
+            specimensToUpdate.push(this.specimens[i]._id);
             specimensToPrint.push(this.specimens[i]);
           }
         }
+        this.$http.post('/api/specimens/exported', JSON.stringify(specimensToUpdate));
         this.$http.post('/api/pdf', { paperSize: this.paperSize, specimens: specimensToPrint }).then((res) => {
+          this.updateTotals();
           $('.download-modal').modal('show');
         }, (res) => {
           console.log(res);

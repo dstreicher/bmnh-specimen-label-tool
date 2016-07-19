@@ -23,6 +23,16 @@ router.route('/')
     });
   });
 
+router.route('/exported')
+  .post(function (req, res, next) {
+    Specimen.update({ _id: { $in: req.body } }, { hasBeenExported: true }, { multi: true }, function (err, specimen) {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).json(specimen);
+    });
+  });
+
 router.route('/:id')
   .get(function (req, res, next) {
     Specimen.findOne({ _id: req.params.id }, function (err, specimen) {

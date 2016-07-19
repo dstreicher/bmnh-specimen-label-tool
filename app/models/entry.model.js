@@ -21,7 +21,7 @@ export default {
     dateMeasured: '',
     additionalInfo: '',
     labelSize: 'Small',
-    hasBeenExported: true,
+    hasBeenExported: false,
   },
   validation: {
     catalogNumber: ['required'],
