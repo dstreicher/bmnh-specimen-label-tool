@@ -9,4 +9,5 @@ cd /vagrant
 sudo npm install
 
 #setup bash profile
+echo "export PHANTOMJS_PATH='/usr/bin/phantomjs'" >> /home/vagrant/.bashrc
 echo 'cd /vagrant' >> /home/vagrant/.bashrc

@@ -60,7 +60,7 @@
         </div>
       </div>
       <div class="col-xs-12">
-        <button type="button" v-on:click="exportPDF" :disabled="!$validation.valid" class="btn btn-success btn-lg btn-block">Export</button>
+        <button type="button" v-on:click="exportPDF" :disabled="printTotal < 1" class="btn btn-success btn-lg btn-block">Export</button>
       </div>
     </div>
     <download-modal></download-modal>
@@ -82,7 +82,8 @@
         specimens: {},
         doneTotal: 0,
         toDoTotal: 0,
-        currentFilter: ''
+        currentFilter: '',
+        printTotal: 0
       }
     },
     created() {
@@ -101,6 +102,7 @@
     methods: {
       togglePrintOption(index) {
         this.specimens[index].shouldPrint = !this.specimens[index].shouldPrint;
+        this.printTotal = (this.specimens[index].shouldPrint) ? this.printTotal + 1 : this.printTotal - 1;
       },
       toggleCollapse(id) {
         $('#' + id + '-collapse').collapse('toggle');
@@ -144,6 +146,7 @@
             specimensToPrint.push(this.specimens[i]);
           }
         }
+        this.printTotal = 0;
         this.updateTotals();
         this.updateFilter(this.currentFilter);
         this.$http.post('/api/specimens/exported', JSON.stringify(specimensToUpdate));

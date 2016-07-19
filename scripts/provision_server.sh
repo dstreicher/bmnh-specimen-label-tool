@@ -18,10 +18,11 @@ sudo npm install npm -g
 
 #setup phantomjs
 cd /usr/local/share
-sudo wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
-sudo tar xjf phantomjs-1.9.7-linux-x86_64.tar.bz2
-sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/share/phantomjs
-sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
-sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
-echo "export PHANTOM_PATH='/usr/bin/phantomjs'" >> ~/.profile
+export PHANTOM_JS="phantomjs-2.1.1-linux-x86_64"
+sudo wget https://github.com/Medium/phantomjs/releases/download/v2.1.1/$PHANTOM_JS.tar.bz2
+sudo tar xvjf $PHANTOM_JS.tar.bz2
+sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/share/phantomjs
+sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin/phantomjs
+sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/bin/phantomjs
+echo "export PHANTOMJS_PATH='/usr/bin/phantomjs'" >> ~/.profile
 source ~/.bashrc
