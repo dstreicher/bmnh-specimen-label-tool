@@ -112,7 +112,7 @@
 
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.latitude.touched && $validation.latitude.invalid), 'has-success': ($validation.latitude.touched && $validation.latitude.valid) }">
-              <label for="latitude">Latitude *</label>
+              <label for="latitude">Latitude</label>
               <small v-if="$validation.latitude.touched && $validation.latitude.invalid" class="text-danger pull-xs-right">{{$validation.latitude.errors[0].message}}</small>
               <div class="input-group">
                 <input type="text" v-model="form.latitude" class="form-control" id="latitude" v-validate:latitude="validation.latitude" v-bind:class="{ 'form-control-danger': $validation.latitude.invalid, 'form-control-success': ($validation.latitude.touched && $validation.latitude.valid) }">
@@ -126,7 +126,7 @@
 
           <div class="col-xs-12 col-md-12">
             <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.longitude.touched && $validation.longitude.invalid), 'has-success': ($validation.longitude.touched && $validation.longitude.valid) }">
-              <label for="longitude">Longitude *</label>
+              <label for="longitude">Longitude</label>
               <small v-if="$validation.longitude.touched && $validation.longitude.invalid" class="text-danger pull-xs-right">{{$validation.longitude.errors[0].message}}</small>
               <div class="input-group">
                 <input type="text" v-model="form.longitude" lazy class="form-control" id="longitude" v-validate:longitude="validation.longitude"
