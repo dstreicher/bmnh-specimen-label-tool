@@ -10,7 +10,12 @@
       </div>
       <div class="location-row">
         <span class="country-locality">{{specimen.country}}: {{specimen.locality}}</span>
-        <span class="country-locality">{{specimen.latitude}}°, {{specimen.longitude}}°, {{specimen.altitude}} m</span>
+        <span class="country-locality">
+        <span v-if="specimen.latitude">{{specimen.latitude}}°</span>
+        <span v-if="specimen.latitude && specimen.longitude">,</span>
+        <span v-if="specimen.longitude">{{specimen.longitude}}°</span>
+        <span v-if="specimen.altitude">, {{specimen.altitude}} m</span>
+        </span>
       </div>
       <div class="collection-row">
         <span class="collection-info">{{specimen.fieldID}}</span>
