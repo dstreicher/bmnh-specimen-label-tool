@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="modal fade {{target}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal fade" :class="target" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog modal-md">
         <div class="modal-content">
           <div class="modal-header">
@@ -65,43 +65,46 @@
 </template>
 
 <script>
-  import cvars from '../services/cvars.service'
-  import coordinates from '../services/coordinates.service'
-  export default {
-    props: [
-      'target',
-      'titleText',
-      'isLatitude',
-      'fieldVal'
-    ],
-    data() {
-      var hemisphere = (this.isLatitude) ? 'N' : 'E';
-      return {
-        degrees: '',
-        minutes: '',
-        seconds: '',
-        hemisphere: hemisphere
-      }
-    },
-    methods: {
-      submit() {
-        var degrees = this.degrees || 0;
-        var minutes = this.minutes || 0;
-        var seconds = this.seconds || 0;
-        var decimal = coordinates.convertDMSToDD(degrees, minutes, seconds, this.hemisphere);
-        this.degrees = '';
-        this.minutes = '';
-        this.seconds = '';
-        this.hemisphere = (this.isLatitude) ? 'N' : 'E';
-        this.$dispatch(this.target + ':submit', decimal.toFixed(cvars.DEFAULT_GPS_DECIMAL_PLACES));
-      }
+import cvars from "../services/cvars.service";
+import coordinates from "../services/coordinates.service";
+export default {
+  props: ["target", "titleText", "isLatitude", "fieldVal"],
+  data() {
+    var hemisphere = this.isLatitude ? "N" : "E";
+    return {
+      degrees: "",
+      minutes: "",
+      seconds: "",
+      hemisphere: hemisphere
+    };
+  },
+  methods: {
+    submit() {
+      var degrees = this.degrees || 0;
+      var minutes = this.minutes || 0;
+      var seconds = this.seconds || 0;
+      var decimal = coordinates.convertDMSToDD(
+        degrees,
+        minutes,
+        seconds,
+        this.hemisphere
+      );
+      this.degrees = "";
+      this.minutes = "";
+      this.seconds = "";
+      this.hemisphere = this.isLatitude ? "N" : "E";
+      this.$dispatch(
+        this.target + ":submit",
+        decimal.toFixed(cvars.DEFAULT_GPS_DECIMAL_PLACES)
+      );
     }
   }
+};
 </script>
 
 <style scoped>
-  #hemisphere {
-    margin-top: 2rem;
-    height: 38px;
-  }
+#hemisphere {
+  margin-top: 2rem;
+  height: 38px;
+}
 </style>

@@ -437,6 +437,7 @@
 
   .c-input {
     color: #fff;
+    user-select: none;
     -moz-user-select: none;
   }
 

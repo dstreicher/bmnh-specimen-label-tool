@@ -1,19 +1,40 @@
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-var config = {
+module.exports = {
+  mode: 'development',
   entry: './app/main.js',
   output: {
-    path: __dirname + '/dist/',
-    publicPath: 'dist/',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist/',
     filename: 'build.js'
   },
   module: {
     loaders: [
-      { test: /\.vue$/, loader: 'vue' },
-      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
-      { test: /\.json$/, loader: 'json' },
-      { test: /\.(png|jpg|gif)$/, loader: "url", query: { limit: 5000, name: 'assets/img-[hash:6].[ext]' } },
-      { test: /\.(html)$/, loader: 'file-loader?name=[name].[ext]' }
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader'
+      },
+      { 
+        test: /\.json$/,
+        loader: 'json' 
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        loader: "url-loader",
+        query: {
+          limit: 5000, name: 'assets/img-[hash:6].[ext]'
+        }
+      },
+      { 
+        test: /\.(html)$/, 
+        loader: 'file-loader?name=[name].[ext]' 
+      }
     ]
   },
   babel: {
@@ -30,5 +51,3 @@ var config = {
     ])
   ]
 };
-
-module.exports = config;
