@@ -12,6 +12,7 @@ services:
     environment:
       NODE_ENV: development
       MONGO_URL: mongodb://mongodb:27017
+      PHANTOMJS_PATH: /usr/bin/phantomjs
   mongodb:
     image: mongo:latest
     ports:

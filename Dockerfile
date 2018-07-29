@@ -1,13 +1,25 @@
-FROM node:8.11-alpine
+FROM ubuntu:14.04
 
-# Installs PhantomJS for alpine linux
-# https://gist.github.com/vovimayhem/6437c2f03b654e392ccf3e9903eba6af
-RUN apk update && apk add --no-cache fontconfig curl curl-dev && \
-  mkdir -p /usr/share && \
-  cd /usr/share \
-  && curl -L https://github.com/Overbryd/docker-phantomjs-alpine/releases/download/2.11/phantomjs-alpine-x86_64.tar.bz2 | tar xj \
-  && ln -s /usr/share/phantomjs/phantomjs /usr/bin/phantomjs \
-  && phantomjs --version
+# Install dependencies
+RUN apt-get update && apt-get install -y wget \
+  build-essential chrpath libssl-dev libxft-dev \
+  libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev
+
+# Install NodeJS
+RUN wget -qO- https://deb.nodesource.com/setup_8.x | bash - && \
+  apt-get install -y nodejs
+
+# Update NPM
+RUN npm install npm -g
+
+# Install PhantomJS
+RUN cd /usr/local/share && \
+  wget https://github.com/Medium/phantomjs/releases/download/v2.1.1/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+  tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+  ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/share/phantomjs && \
+  ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs && \
+  ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/phantomjs && \
+  phantomjs --version
 
 # Create app directory
 WORKDIR /usr/src/app
