@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    build: .
+    depends_on:
+      - mongodb
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    environment:
+      NODE_ENV: development
+      MONGO_URL: mongodb://mongodb:27017
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+volumes:
+  mongodb-data:
