@@ -1,39 +1,43 @@
 {{#each specimens}}
-  <div>
-    <div class="label-container">
-      <div class="record-row">
-        <span class="catalog-number">{{this.catalogNumber}}</span>
-        <span class="family">{{this.family}}</span>
-      </div>
-      <div class="name-row">
-        <span class="scientific-name">{{this.genus}} {{this.species}} <span class="described-by">{{this.describedBy}}</span></span>
-      </div>
-      <div class="location-row">
-        <span class="country-locality">{{this.country}}: {{this.locality}}</span>
-        <span class="country-locality">{{this.latitude}}°, {{this.longitude}}°{{#if this.altitude }}, {{this.altitude}} m{{/if}}</span>
-      </div>
-      <div class="collection-row">
-        <span class="collection-info">{{this.fieldID}}</span>
-        <span class="collection-info">Coll: {{this.collectedBy}}</span>
-        <span class="collection-info">Date: {{this.collectionDate}}</span>
-        <span class="collection-info">{{this.alcoholConcentration}}% {{this.alcoholComposition}} ({{this.dateMeasured}})</span>
-      </div>
-      <div class="nhm-row">
-        <span class="nhm-label">The Natural History Museum (BMNH) - Amphibian Collection</span>
-      </div>
-      <div class="data-matrix">
-        <img class="barcode" src="{{this.dataMatrixImage}}">
-      </div>
-      <div class="type-label">
-        <span class="type-text">{{this.type}}</span>
-      </div>
+<div>
+  <div class="label-container">
+    <div class="record-row">
+      <span class="catalog-number">{{this.catalogNumber}}</span>
+      <span class="family">{{this.family}}</span>
+    </div>
+    <div class="name-row">
+      <span class="scientific-name">{{this.genus}} {{this.species}}
+        <span class="described-by">{{this.describedBy}}</span>
+      </span>
+    </div>
+    <div class="location-row">
+      <span class="country-locality">{{this.country}}: {{this.locality}}</span>
+      <span class="country-locality">{{this.latitude}}°, {{this.longitude}}°{{#if this.altitude }}, {{this.altitude}} m{{/if}}</span>
+      <span class="country-tag">CR-01</span>
+    </div>
+    <div class="collection-row">
+      <span class="collection-info">{{this.fieldID}}</span>
+      <span class="collection-info">Coll: {{this.collectedBy}}</span>
+      <span class="collection-info">Date: {{this.collectionDate}}</span>
+      <span class="collection-info">{{this.alcoholConcentration}}% {{this.alcoholComposition}} ({{this.dateMeasured}})</span>
+    </div>
+    <div class="nhm-row">
+      <span class="nhm-label">The Natural History Museum (BMNH) - Amphibian Collection</span>
+    </div>
+    <div class="data-matrix">
+      <img class="barcode" src="{{this.dataMatrixImage}}">
+    </div>
+    <div class="type-label">
+      <span class="type-text">{{this.type}}</span>
     </div>
   </div>
+</div>
 {{/each}}
 <style>
   body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+
   .label-container {
     background-color: #fff;
     height: 16.3rem;
@@ -95,6 +99,15 @@
     font-size: 0.8rem;
     font-weight: 600;
     line-height: 1rem;
+  }
+
+  .location-row .country-tag {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 0.5rem;
   }
 
   .collection-row {
