@@ -10,6 +10,7 @@
       </div>
       <div class="location-row">
         <span class="country-locality">{{specimen.country}}: {{specimen.locality}}</span>
+        <span class="country-tag">{{specimen.genus.substring(0,2).toUpperCase()}}-{{specimen.countryCode}}</span>
         <span class="country-locality">
         <span v-if="specimen.latitude">{{specimen.latitude}}°</span>
         <span v-if="specimen.latitude && specimen.longitude">,</span>
@@ -101,11 +102,20 @@
 
   .location-row .country-locality {
     display: inline-block;
-    width: 100%;
+    width: 60%;
     text-align: left;
     font-size: 0.8rem;
     font-weight: 600;
     line-height: 1rem;
+  }
+
+  .location-row .country-tag {
+    display: inline-block;
+    width: 40%;
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 0.5rem;
   }
 
   .collection-row {

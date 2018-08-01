@@ -6,6 +6,11 @@ var Handlebars = require('handlebars');
 var config = require('../server.config');
 var router = express.Router();
 
+Handlebars.registerHelper('genusCodeTrim', function (genus) {
+  var genusCode = genus.substring(0, 2).toUpperCase();
+  return new Handlebars.SafeString(genusCode);
+});
+
 router.route('/')
   .post(function (req, res, next) {
     var page;

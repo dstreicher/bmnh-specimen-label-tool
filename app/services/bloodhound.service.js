@@ -2,8 +2,7 @@ var family = require('../assets/dataset-family.json');
 var genus = require('../assets/dataset-genus.json');
 var species = require('../assets/dataset-species.json');
 var type = require('../assets/dataset-type.json');
-var country = require('../assets/dataset-country.json');
-
+var country = require('../assets/dataset-country-codes.json');
 var genusMap = require('../assets/datamap-genus-suggest.json');
 var speciesMap = require('../assets/datamap-species-suggest.json');
 
@@ -35,7 +34,7 @@ var datasets = {
     local: type
   }),
   country: new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Country'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     local: country
   })
@@ -74,7 +73,7 @@ export default {
     $genus.typeahead({ minLength: 0 }, { name: 'genus', source: datasets.genus.ttAdapter() });
     $species.typeahead({ minLength: 0 }, { name: 'species', source: datasets.species.ttAdapter() });
     $type.typeahead(null, { name: 'type', source: datasets.type });
-    $country.typeahead(null, { name: 'country', source: datasets.country });
+    $country.typeahead(null, { name: 'country', display: 'Country', source: datasets.country });
   },
   update() {
     $family.typeahead('val', $family.val());

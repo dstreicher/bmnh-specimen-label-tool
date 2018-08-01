@@ -98,7 +98,7 @@
             <fieldset class="form-group" v-bind:class="{ 'has-danger': ($validation.country.touched && $validation.country.invalid), 'has-success': ($validation.country.touched && $validation.country.valid) }">
               <label for="country">Country *</label>
               <small v-if="$validation.country.touched && $validation.country.invalid" class="text-danger pull-xs-right">{{$validation.country.errors[0].message}}</small>
-              <input type="text" v-model="form.country" class="form-control" id="country" v-validate:country="validation.country" v-bind:class="{ 'form-control-danger': $validation.country.invalid, 'form-control-success': ($validation.country.touched && $validation.country.valid) }">
+              <input type="text" v-model="form.country" class="form-control" id="country" v-on:blur="updateCountryInfo" v-validate:country="validation.country" v-bind:class="{ 'form-control-danger': $validation.country.invalid, 'form-control-success': ($validation.country.touched && $validation.country.valid) }">
             </fieldset>
           </div>
 
@@ -277,6 +277,7 @@
   import DataPortal from '../services/dataportal.service'
   import PromptModal from '../components/PromptModal.vue'
   import CoordinateModal from '../components/CoordinateModal.vue'
+  import countryData from '../assets/dataset-country-codes.json'
 
   export default {
     components: {
@@ -353,6 +354,17 @@
         }
         else if (dataset === 'species') {
           Bloodhound.updateSpecies(this.form.genus);
+        }
+      },
+      updateCountryInfo() {
+        var countryName = this.form.country;
+        var info = countryData.filter(function(e) {
+          return e.Country == countryName;
+        });
+        if (info && info.length > 0) {
+          this.form.countryIso2 = info[0]['ISO-Alpha-2'];
+          this.form.countryIso3 = info[0]['ISO-Alpha-2'];
+          this.form.countryCode = info[0]['ISO-Numeric-Code'];
         }
       },
       showLatitudeModal() {

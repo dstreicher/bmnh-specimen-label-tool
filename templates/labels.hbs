@@ -12,8 +12,8 @@
     </div>
     <div class="location-row">
       <span class="country-locality">{{this.country}}: {{this.locality}}</span>
+      <span class="country-tag">{{genusCodeTrim this.genus}}-{{this.countryCode}}</span>
       <span class="country-locality">{{this.latitude}}°, {{this.longitude}}°{{#if this.altitude }}, {{this.altitude}} m{{/if}}</span>
-      <span class="country-tag">CR-01</span>
     </div>
     <div class="collection-row">
       <span class="collection-info">{{this.fieldID}}</span>
@@ -94,7 +94,7 @@
 
   .location-row .country-locality {
     display: inline-block;
-    width: 100%;
+    width: 60%;
     text-align: left;
     font-size: 0.8rem;
     font-weight: 600;
@@ -103,7 +103,7 @@
 
   .location-row .country-tag {
     display: inline-block;
-    width: 100%;
+    width: 40%;
     text-align: right;
     font-size: 1.2rem;
     font-weight: 600;
