@@ -6,9 +6,9 @@ var Handlebars = require('handlebars');
 var config = require('../server.config');
 var router = express.Router();
 
-Handlebars.registerHelper('genusCodeTrim', function (genus) {
-  var genusCode = genus.substring(0, 2).toUpperCase();
-  return new Handlebars.SafeString(genusCode);
+Handlebars.registerHelper('TwoCharCode', function (value) {
+  var code = value.substring(0, 2).toUpperCase();
+  return new Handlebars.SafeString(code);
 });
 
 router.route('/')

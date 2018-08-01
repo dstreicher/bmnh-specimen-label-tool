@@ -12,7 +12,7 @@
     </div>
     <div class="location-row">
       <span class="country-locality">{{this.country}}: {{this.locality}}</span>
-      <span class="country-tag">{{genusCodeTrim this.genus}}-{{this.countryCode}}</span>
+      <span class="country-tag">{{TwoCharCode this.genus}}{{TwoCharCode this.species}}-{{this.countryCode}}</span>
       <span class="country-locality">{{this.latitude}}°, {{this.longitude}}°{{#if this.altitude }}, {{this.altitude}} m{{/if}}</span>
     </div>
     <div class="collection-row">

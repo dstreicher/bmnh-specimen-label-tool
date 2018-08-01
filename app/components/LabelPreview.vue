@@ -10,7 +10,7 @@
       </div>
       <div class="location-row">
         <span class="country-locality">{{specimen.country}}: {{specimen.locality}}</span>
-        <span class="country-tag">{{specimen.genus.substring(0,2).toUpperCase()}}-{{specimen.countryCode}}</span>
+        <span class="country-tag">{{specimen.genus.substring(0,2).toUpperCase()}}{{specimen.species.substring(0,2).toUpperCase()}}-{{specimen.countryCode}}</span>
         <span class="country-locality">
         <span v-if="specimen.latitude">{{specimen.latitude}}°</span>
         <span v-if="specimen.latitude && specimen.longitude">,</span>
