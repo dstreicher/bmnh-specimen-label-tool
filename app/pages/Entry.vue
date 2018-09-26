@@ -120,7 +120,7 @@
                   <button v-on:click="showLatitudeModal" class="btn btn-success" type="button">DMS</button>
                 </span>
               </div>
-              <small class="text-muted">in decimal degrees</small>
+              <small class="text-muted">in decimal degrees (-90° to 90°)</small>
             </fieldset>
           </div>
 
@@ -135,7 +135,7 @@
                   <button v-on:click="showLongitudeModal" class="btn btn-success" type="button">DMS</button>
                 </span>
               </div>
-              <small class="text-muted">in decimal degrees</small>
+              <small class="text-muted">in decimal degrees (-180° to 180°)</small>
             </fieldset>
           </div>
 

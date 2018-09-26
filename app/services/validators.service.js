@@ -59,7 +59,7 @@ export default {
       return true;
     }
   },
-  geocoordinate: {
+  latitude: {
     message: cvars.ERROR_INVALID_FORMAT,
     check: function (val) {
       if (isEmpty(val)) {
@@ -67,6 +67,19 @@ export default {
       }
       var n = parseFloat(val);
       if (n < -90 || n > 90) {
+        return false;
+      }
+      return !isNaN(n) && isFinite(val);
+    }
+  },
+  longitude: {
+    message: cvars.ERROR_INVALID_FORMAT,
+    check: function (val) {
+      if (isEmpty(val)) {
+        return true;
+      }
+      var n = parseFloat(val);
+      if (n < -180 || n > 180) {
         return false;
       }
       return !isNaN(n) && isFinite(val);
