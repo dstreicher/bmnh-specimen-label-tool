@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="label-container">
+    <div class="label-container" :class="specimen.labelSize">
       <div class="record-row">
         <span class="catalog-number">{{specimen.catalogNumber}}</span>
         <span class="family">{{specimen.family}}</span>
@@ -45,27 +45,51 @@
   }
 </script>
 
-<style scoped>
+<style>
   .label-container {
     background-color: #fff;
-    height: 16.3rem;
-    width: 27rem;
+    height: 16.3em;
+    width: 27em;
     color: #000;
     font-size: 0;
-    border: 0.1rem solid #000;
-    padding: 0.2rem;
+    border: 0.1em solid #000;
+    padding: 0.2em;
+  }
+
+  .label-container.Small {
+    height: 4.5cm;
+    width: 8cm;
+    font-size: 8px;
+  }
+
+  .label-container.Medium {
+    height: 5.625cm;
+    width: 10cm;
+    font-size: 10px;
+  }
+
+  .label-container.Large {
+    height: 7.875cm;
+    width: 14cm;
+    font-size: 12px;
+  }
+
+  .label-container.Extra.Large {
+    height: 10.125cm;
+    width: 18cm;
+    font-size: 14px;
   }
 
   .record-row {
-    border-top: 0.15rem solid #000;
-    padding: 0 0.5rem;
+    border-top: 0.15em solid #000;
+    padding: 0 0.5em;
   }
 
   .record-row .catalog-number {
     display: inline-block;
     width: 50%;
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 1.3em;
   }
 
   .record-row .family {
@@ -73,12 +97,12 @@
     width: 50%;
     text-align: right;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.1em;
   }
 
   .name-row {
-    border-top: 0.15rem solid #000;
-    padding: 0 0.5rem;
+    border-top: 0.15em solid #000;
+    padding: 0 0.5em;
   }
 
   .name-row .scientific-name {
@@ -87,68 +111,68 @@
     text-align: left;
     font-style: italic;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.1em;
   }
 
   .name-row .described-by {
-    font-size: 0.7rem;
+    font-size: 0.7em;
   }
 
   .location-row {
-    border-top: 0.15rem solid #000;
-    padding: 0.5rem 0.5rem 0;
-    min-height: 5.5rem;
+    border-top: 0.15em solid #000;
+    padding: 0.5em 0.5em 0;
+    min-height: 5.5em;
   }
 
   .location-row .country-locality {
     display: inline-block;
     width: 60%;
     text-align: left;
-    font-size: 0.8rem;
+    font-size: 0.8em;
     font-weight: 600;
-    line-height: 1rem;
+    line-height: 1em;
   }
 
   .location-row .country-tag {
     display: inline-block;
     width: 40%;
     text-align: right;
-    font-size: 1.2rem;
+    font-size: 1.2em;
     font-weight: 600;
-    line-height: 0.5rem;
+    line-height: 0.5em;
   }
 
   .collection-row {
-    padding: 0.5rem 0.5rem 0.5rem;
+    padding: 0.5em 0.5em 0.5em;
   }
 
   .collection-row .collection-info {
     display: inline-block;
     width: 80%;
     text-align: left;
-    font-size: 0.8rem;
-    line-height: 1rem;
+    font-size: 0.8em;
+    line-height: 1em;
   }
 
   .nhm-row {
-    border-top: 0.15rem solid #000;
-    border-bottom: 0.15rem solid #000;
-    padding: 0.5rem 0.5rem 0.5rem;
+    border-top: 0.15em solid #000;
+    border-bottom: 0.15em solid #000;
+    padding: 0.5em 0.5em 0.5em;
   }
 
   .nhm-row .nhm-label {
     display: inline-block;
     width: 100%;
     text-align: center;
-    font-size: 0.8rem;
-    line-height: 1rem;
+    font-size: 0.8em;
+    line-height: 1em;
   }
 
   .data-matrix {
     position: relative;
-    bottom: 5.8rem;
+    bottom: 5.8em;
     text-align: right;
-    padding: 0 0.5rem;
+    padding: 0 0.5em;
   }
 
   .data-matrix .barcode {
@@ -159,13 +183,13 @@
 
   .type-label {
     position: relative;
-    bottom: 7.2rem;
+    bottom: 7.2em;
     text-align: right;
-    padding-right: 4.2rem;
+    padding-right: 4.2em;
   }
 
   .type-label .type-text {
-    font-size: 1.2rem;
+    font-size: 1.2em;
     font-weight: 600;
     text-transform: uppercase;
   }
