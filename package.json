@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "express": "4.13.4",
-    "mongoose": "4.4.20",
+    "mongoose": "5.7.5",
     "html-pdf": "2.0.1",
     "handlebars": "4.0.5",
     "body-parser": "1.15.1",
