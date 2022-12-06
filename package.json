@@ -10,7 +10,7 @@
     "unit": "karma start tests/unit/karma.conf.js --single-run"
   },
   "dependencies": {
-    "express": "4.13.4",
+    "express": "4.17.3",
     "mongoose": "4.4.20",
     "html-pdf": "2.0.1",
     "handlebars": "4.0.5",
